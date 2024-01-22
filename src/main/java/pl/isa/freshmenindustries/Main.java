@@ -1,5 +1,7 @@
 package pl.isa.freshmenindustries;
 
+import pl.isa.freshmenindustries.manage_game.ManageGameSimulation;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,6 +16,7 @@ public class Main {
         zarejestrowaniUzytkownicy.put("adrian", "1234");
 
         Scanner scanner = new Scanner(System.in);
+
 
         while (true) {
             System.out.print("Podaj swoją nazwę użytkownika: ");
