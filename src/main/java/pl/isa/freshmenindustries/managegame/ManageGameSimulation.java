@@ -1,27 +1,27 @@
-package pl.isa.freshmenindustries.managegame;
+package pl.isa.freshmenindustries.manage_game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManageGameSimulation {
 
-    ManageGameMenu manageGameService = new ManageGameMenu();
+    ManageGameUtils manageGameService = new ManageGameUtils();
     private final ArrayList<ManageGameOption> gameOptions = manageGameService.createManageGameOptions();
-    private final String SEPARATOR = "----------------------------------------------------------------------";
-    private final String VIEW_TITLE = "Enter option number: ";
-    private final String ERROR_MESSAGE = "Incorrect value. Please try again: ";
+    private String SEPARATOR = "----------------------------------------------------------------------";
+    private String VIEW_TITLE = "Enter option number: ";
+    private String ERROR_MESSAGE = "Incorrect value. Please try again: ";
 
 
     public void startManageOptions() {
         System.out.println(SEPARATOR);
-        manageGameService.createViewTitle(gameOptions);
+        manageGameService.createViewTitle(gameOptions.size());
         manageGameService.getOptions(gameOptions);
         System.out.println(SEPARATOR);
         System.out.println(VIEW_TITLE);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Integer input = manageGameService.validateInput(scanner.nextLine());
-            if(input !=null && input >= 1 && input <= manageGameService.getOptionsLimit(gameOptions)) {
+            Integer input = Validator.validateIntegerInput(scanner.nextLine());
+            if(input !=null && input >= 1 && input <= gameOptions.size()) {
                 manageGameService.goToTheOption(input);
                 break;
             } else {
