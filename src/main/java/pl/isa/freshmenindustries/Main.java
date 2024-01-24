@@ -17,13 +17,6 @@ public class Main {
         zarejestrowaniUzytkownicy.put("krzystof", "1234");
         zarejestrowaniUzytkownicy.put("adrian", "1234");
 
-        ArrayList<Game> listOfGames = new ArrayList<Game>();
-        listOfGames.add( new Game("Gra 1", "Desc 1"));
-        listOfGames.add(new Game("Gra 2", "Desc 2"));
-        listOfGames.add(new Game("Gra 3", "Desc 3"));
-        GameUtils gameUtilise = new GameUtils();
-        gameUtilise.removeGameFromList(listOfGames);
-        gameUtilise.displayListOfGames(listOfGames);
 
         Scanner scanner = new Scanner(System.in);
 
