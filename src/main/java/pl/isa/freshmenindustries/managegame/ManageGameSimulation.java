@@ -1,5 +1,7 @@
 package pl.isa.freshmenindustries.managegame;
 
+import pl.isa.freshmenindustries.helpers.Validator;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

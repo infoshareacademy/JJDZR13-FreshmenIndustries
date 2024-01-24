@@ -1,4 +1,4 @@
-package pl.isa.freshmenindustries.manage_game;
+package pl.isa.freshmenindustries.game;
 
 import java.util.List;
 import java.util.Scanner;
