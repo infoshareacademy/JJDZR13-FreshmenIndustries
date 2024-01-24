@@ -2,7 +2,7 @@ package pl.isa.freshmenindustries.manage_game;
 
 import java.util.ArrayList;
 
-public class ManageGameUtilise {
+public class ManageGameUtils {
     private final ArrayList<ManageGameOption> gameOptions = new ArrayList<>();
     public final ArrayList<ManageGameOption> createManageGameOptions() {
         gameOptions.add(new ManageGameOption("Add new game", 1, false));

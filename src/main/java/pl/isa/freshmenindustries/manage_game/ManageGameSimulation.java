@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ManageGameSimulation {
 
-    ManageGameUtilise manageGameService = new ManageGameUtilise();
+    ManageGameUtils manageGameService = new ManageGameUtils();
     private final ArrayList<ManageGameOption> gameOptions = manageGameService.createManageGameOptions();
     private String separator = "----------------------------------------------------------------------";
     private String viewTitle = "Enter option number: ";
