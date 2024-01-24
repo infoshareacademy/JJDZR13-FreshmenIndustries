@@ -20,8 +20,8 @@ public class ManageGameSimulation {
         System.out.println(VIEW_TITLE);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Integer input = manageGameService.validateInput(scanner.nextLine());
-            if(input !=null && input >= 1 && input <= manageGameService.getOptionsLimit(gameOptions)) {
+            Integer input = Validator.validateIntegerInput(scanner.nextLine());
+            if(input !=null && input >= 1 && input <= gameOptions.size()) {
                 manageGameService.goToTheOption(input);
                 break;
             } else {
