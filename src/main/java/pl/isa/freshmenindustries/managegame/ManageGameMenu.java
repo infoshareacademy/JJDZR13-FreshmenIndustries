@@ -22,12 +22,12 @@ public class ManageGameMenu {
         }
     }
 
-    public int getOptionsLimit(ArrayList<ManageGameOption> manageGameOptions) {
+    public int getOptionsLimit(int manageGameOptions) {
 
-        return manageGameOptions.size();
+        return manageGameOptions;
     }
 
-    public void createViewTitle(ArrayList<ManageGameOption> manageGameOptions) {
+    public void createViewTitle(int manageGameOptions) {
         System.out.println("Select one of the below option by entering number from 1 to " + this.getOptionsLimit(manageGameOptions) + " : ");
     }
 

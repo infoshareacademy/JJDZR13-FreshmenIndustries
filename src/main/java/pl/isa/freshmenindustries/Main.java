@@ -1,5 +1,11 @@
 package pl.isa.freshmenindustries;
 
+import pl.isa.freshmenindustries.game.Game;
+import pl.isa.freshmenindustries.game.GameUtils;
+import pl.isa.freshmenindustries.managegame.ManageGameMenu;
+import pl.isa.freshmenindustries.managegame.RemoveGameSimulation;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

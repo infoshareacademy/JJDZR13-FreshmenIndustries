@@ -1,4 +1,4 @@
-package pl.isa.freshmenindustries.manage_game;
+package pl.isa.freshmenindustries.validator;
 
 public final class Validator {
         public static Integer validateIntegerInput(String input) {
