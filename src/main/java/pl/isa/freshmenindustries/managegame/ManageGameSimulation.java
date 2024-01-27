@@ -1,7 +1,5 @@
 package pl.isa.freshmenindustries.managegame;
 
-import pl.isa.freshmenindustries.helpers.Validator;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,8 +20,8 @@ public class ManageGameSimulation {
         System.out.println(VIEW_TITLE);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Integer input = Validator.validateIntegerInput(scanner.nextLine());
-            if(input !=null && input >= 1 && input <= gameOptions.size()) {
+            Integer input = manageGameService.validateInput(scanner.nextLine());
+            if(input !=null && input >= 1 && input <= manageGameService.getOptionsLimit(gameOptions)) {
                 manageGameService.goToTheOption(input);
                 break;
             } else {
