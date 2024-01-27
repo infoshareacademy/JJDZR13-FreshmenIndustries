@@ -7,15 +7,14 @@ import pl.isa.freshmenindustries.validator.Validator;
 import java.util.List;
 import java.util.Scanner;
 
+import static pl.isa.freshmenindustries.message.OutputMessage.*;
+
 public class RemoveGameSimulation {
     GameUtils gameUtils = new GameUtils();
-    private final String SEPARATOR = "----------------------------------------------------------------------";
-    private final String TITLE = "List of games: ";
-    private final String ERROR_MESSAGE = "Incorrect value. Please try again: ";
 
     public final void removeGame(List<Game> listOfGames) {
         System.out.println(SEPARATOR);
-        System.out.println(TITLE);
+        System.out.println(LIST_OF_GAMES);
         gameUtils.displayListOfGames(listOfGames);
         System.out.println(SEPARATOR);
         gameUtils.displayFunctionTitleWithLimit(listOfGames.size());
@@ -31,7 +30,7 @@ public class RemoveGameSimulation {
                     break;
                 }
             } else {
-                System.out.println(ERROR_MESSAGE);
+                System.out.println(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
             }
         }
     }

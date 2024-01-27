@@ -3,9 +3,9 @@ package pl.isa.freshmenindustries.game;
 import java.util.List;
 import java.util.Scanner;
 
+import static pl.isa.freshmenindustries.message.OutputMessage.*;
+
 public class GameUtils {
-    private final String REMOVE_TITLE = "Select the game to remove by entering number from 1 to ";
-    private final String REMOVE_CONFIRMATION_TITLE = "Please confirm that you would like to remove game by entering YES or NOT (Y/N)";
 
     public final void displayListOfGames(List<Game> list) {
         for (Game game : list) {
@@ -23,7 +23,7 @@ public class GameUtils {
     }
 
     public final boolean confirmRemoveGame(String name) {
-        System.out.println("You are removing game name " + name + "." + REMOVE_CONFIRMATION_TITLE);
+        System.out.println("You are removing game name " + name + "." + REMOVE_CONFIRMATION_TITLE + " " + YES_OR_NO_INFO);
         boolean isConfirmed = false;
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class GameUtils {
             } else if (input.equalsIgnoreCase("NO") || input.equalsIgnoreCase("N")) {
                 break;
             } else {
-                System.out.println("Incorrect value. Enter Yes or Not (Y?N)");
+                System.out.println("Incorrect value." + " " + YES_OR_NO_INFO);
             }
         }
         return isConfirmed;

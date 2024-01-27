@@ -46,6 +46,10 @@ public class ManageGameMenu {
             case 2:
                 System.out.println("Odpalamy opcje 2");
             case 3:
+                RemoveGameSimulation removeGameSimulation = new RemoveGameSimulation();
+                //TODO add list of games to below method
+//                removeGameSimulation();
+                //TODO to remove
                 System.out.println("Odpalamy opcje 3");
             case 4:
                 System.out.println("Odpalamy opcje 4");
