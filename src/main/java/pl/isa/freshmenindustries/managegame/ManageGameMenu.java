@@ -23,7 +23,6 @@ public class ManageGameMenu {
     }
 
     public int getOptionsLimit(int manageGameOptions) {
-
         return manageGameOptions;
     }
 
