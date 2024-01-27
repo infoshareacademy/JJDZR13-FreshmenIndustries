@@ -1,4 +1,4 @@
-package pl.isa.freshmenindustries.manage_game;
+package pl.isa.freshmenindustries.managegame;
 
 import java.util.List;
 

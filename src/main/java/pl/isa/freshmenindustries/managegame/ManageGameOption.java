@@ -1,4 +1,4 @@
-package pl.isa.freshmenindustries.manage_game;
+package pl.isa.freshmenindustries.managegame;
 
 public class ManageGameOption {
     private String name;
