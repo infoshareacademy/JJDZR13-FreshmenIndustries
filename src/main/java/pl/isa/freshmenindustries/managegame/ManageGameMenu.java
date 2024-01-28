@@ -1,6 +1,9 @@
 package pl.isa.freshmenindustries.managegame;
 
+import pl.isa.freshmenindustries.game.Game;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageGameMenu {
     private final ArrayList<ManageGameOption> gameOptions = new ArrayList<>();
@@ -38,20 +41,18 @@ public class ManageGameMenu {
         }
     }
 
-    public void goToTheOption(int option) {
+    public void goToTheOption(int option, List<Game> games) {
         switch (option) {
             case 1:
-                System.out.println("Odpalamy opcje 1");
+                System.out.println("Odpalamy opcje 1"); break;
             case 2:
-                System.out.println("Odpalamy opcje 2");
+                System.out.println("Odpalamy opcje 2"); break;
             case 3:
                 RemoveGameSimulation removeGameSimulation = new RemoveGameSimulation();
-                //TODO add list of games to below method
-//                removeGameSimulation();
-                //TODO to remove
-                System.out.println("Odpalamy opcje 3");
+                removeGameSimulation.removeGame(games);
+                break;
             case 4:
-                System.out.println("Odpalamy opcje 4");
+                System.out.println("Odpalamy opcje 4"); break;
         }
     }
 
