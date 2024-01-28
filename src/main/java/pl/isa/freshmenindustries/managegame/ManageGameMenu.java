@@ -1,6 +1,9 @@
 package pl.isa.freshmenindustries.managegame;
 
+import pl.isa.freshmenindustries.game.Game;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageGameMenu {
     private final ArrayList<ManageGameOption> gameOptions = new ArrayList<>();
@@ -22,12 +25,11 @@ public class ManageGameMenu {
         }
     }
 
-    public int getOptionsLimit(ArrayList<ManageGameOption> manageGameOptions) {
-
-        return manageGameOptions.size();
+    public int getOptionsLimit(int manageGameOptions) {
+        return manageGameOptions;
     }
 
-    public void createViewTitle(ArrayList<ManageGameOption> manageGameOptions) {
+    public void createViewTitle(int manageGameOptions) {
         System.out.println("Select one of the below option by entering number from 1 to " + this.getOptionsLimit(manageGameOptions) + " : ");
     }
 
@@ -39,16 +41,18 @@ public class ManageGameMenu {
         }
     }
 
-    public void goToTheOption(int option) {
+    public void goToTheOption(int option, List<Game> games) {
         switch (option) {
             case 1:
-                System.out.println("Odpalamy opcje 1");
+                System.out.println("Odpalamy opcje 1"); break;
             case 2:
-                System.out.println("Odpalamy opcje 2");
+                System.out.println("Odpalamy opcje 2"); break;
             case 3:
-                System.out.println("Odpalamy opcje 3");
+                RemoveGameSimulation removeGameSimulation = new RemoveGameSimulation();
+                removeGameSimulation.removeGame(games);
+                break;
             case 4:
-                System.out.println("Odpalamy opcje 4");
+                System.out.println("Odpalamy opcje 4"); break;
         }
     }
 

@@ -1,34 +1,37 @@
 package pl.isa.freshmenindustries.managegame;
 
+import pl.isa.freshmenindustries.game.Game;
+import pl.isa.freshmenindustries.validator.Validator;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static pl.isa.freshmenindustries.message.OutputMessage.*;
 
 public class ManageGameSimulation {
 
-    ManageGameMenu manageGameService = new ManageGameMenu();
-    private final ArrayList<ManageGameOption> gameOptions = manageGameService.createManageGameOptions();
-    private final String SEPARATOR = "----------------------------------------------------------------------";
-    private final String VIEW_TITLE = "Enter option number: ";
-    private final String ERROR_MESSAGE = "Incorrect value. Please try again: ";
+    ManageGameMenu manageGameMenu = new ManageGameMenu();
+    private final ArrayList<ManageGameOption> gameOptions = manageGameMenu.createManageGameOptions();
 
 
-    public void startManageOptions() {
+
+    public void startManageOptions(List<Game> listGames) {
         System.out.println(SEPARATOR);
-        manageGameService.createViewTitle(gameOptions);
-        manageGameService.getOptions(gameOptions);
+        manageGameMenu.createViewTitle(gameOptions.size());
+        manageGameMenu.getOptions(gameOptions);
         System.out.println(SEPARATOR);
-        System.out.println(VIEW_TITLE);
+        System.out.println(ENTER_OPTION_NUMBER);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Integer input = manageGameService.validateInput(scanner.nextLine());
-            if(input !=null && input >= 1 && input <= manageGameService.getOptionsLimit(gameOptions)) {
-                manageGameService.goToTheOption(input);
+            Integer input = Validator.validateIntegerInput(scanner.nextLine());
+            if(input !=null && input >= 1 && input <= gameOptions.size()) {
+                manageGameMenu.goToTheOption(input, listGames);
                 break;
             } else {
-                System.out.println(ERROR_MESSAGE);
+                System.out.println(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
             }
         }
-        scanner.close();
     }
 
 }
