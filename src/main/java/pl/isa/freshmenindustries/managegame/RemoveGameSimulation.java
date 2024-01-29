@@ -10,27 +10,27 @@ import java.util.Scanner;
 import static pl.isa.freshmenindustries.message.OutputMessage.*;
 
 public class RemoveGameSimulation {
-    GameUtils gameUtils = new GameUtils();
+    private static GameUtils gameUtils = new GameUtils();
 
-    public final void removeGame(List<Game> listOfGames) {
-        System.out.println(SEPARATOR);
-        System.out.println(LIST_OF_GAMES);
+    public static final void removeGame(List<Game> listOfGames) {
+        printOutputMessage(SEPARATOR);
+        printOutputMessage(LIST_OF_GAMES);
         gameUtils.displayListOfGames(listOfGames);
-        System.out.println(SEPARATOR);
+        printOutputMessage(SEPARATOR);
         gameUtils.displayFunctionTitleWithLimit(listOfGames.size());
-        System.out.println("Insert number: ");
+        printOutputMessage(ENTER_OPTION_NUMBER);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             Integer input = Validator.validateIntegerInput(scanner.nextLine());
             if (input != null && input >= 1 && input <= listOfGames.size()) {
-                if (gameUtils.confirmRemoveGame(listOfGames.get(input - 1).getName())) {
+                if (gameUtils.runAndConfirmRemoveGame(listOfGames.get(input - 1).getName())) {
                     gameUtils.removeGameFromList(listOfGames, input);
                     break;
                 } else {
                     break;
                 }
             } else {
-                System.out.println(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
+                printOutputMessage(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
             }
         }
     }

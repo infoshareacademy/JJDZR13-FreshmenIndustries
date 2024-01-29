@@ -12,15 +12,11 @@ public class ManageGameOption {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
     public boolean isReturn() {
         return isReturn;
+    }
+
+    public String toStringShort() {
+        return order + ". " + name;
     }
 }

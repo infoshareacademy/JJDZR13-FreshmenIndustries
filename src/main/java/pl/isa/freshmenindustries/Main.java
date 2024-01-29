@@ -1,5 +1,8 @@
 package pl.isa.freshmenindustries;
 
+import pl.isa.freshmenindustries.game.GameList;
+import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
