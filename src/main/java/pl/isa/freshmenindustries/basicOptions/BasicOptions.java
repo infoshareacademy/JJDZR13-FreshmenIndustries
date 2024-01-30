@@ -1,8 +1,11 @@
 package pl.isa.freshmenindustries.basicOptions;
 
+import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
+
 import java.util.Scanner;
 
 public class BasicOptions {
+
     public void displayOptions() {
         System.out.println("Options:");
         System.out.println("1. New game");
@@ -37,7 +40,7 @@ public class BasicOptions {
                 break;
             case 2:
                 System.out.println(chooseOption(number));
-                System.out.println("You are in manage games menu.");
+                ManageGameSimulation.startManageOptions();
                 break;
         }
     }

@@ -1,11 +1,10 @@
 package pl.isa.freshmenindustries;
-import pl.isa.freshmenindustries.basicOptions.BasicOptions;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import pl.isa.freshmenindustries.basicOptions.BasicOptionSimulation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,17 +26,7 @@ public class Main {
 
                 if (haslo.equals(zarejestrowaniUzytkownicy.get(nazwaUzytkownika))) {
                     System.out.println("Witaj " + nazwaUzytkownika + ".");
-
-                    BasicOptions basicOptions = new BasicOptions();
-                    basicOptions.displayOptions();
-                    basicOptions.enterNumber();
-                    try {
-                        basicOptions.enterInput();
-                    } catch (InputMismatchException exc) {
-                        System.out.println("Invalid value. You can only enter integer number. Enter 1 or 2:");
-                        basicOptions.enterInput();
-                    }
-
+                    BasicOptionSimulation.runBasicOptionSimulation();
                     break;
                 } else {
                     System.out.println("Nieprawidłowe hasło. Spróbuj ponownie.");
