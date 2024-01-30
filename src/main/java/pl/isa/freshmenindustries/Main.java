@@ -1,5 +1,7 @@
 package pl.isa.freshmenindustries;
 
+import pl.isa.freshmenindustries.basicOptions.BasicOptionSimulation;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,7 +16,6 @@ public class Main {
         zarejestrowaniUzytkownicy.put("adrian", "1234");
 
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.print("Podaj swoją nazwę użytkownika: ");
             String nazwaUzytkownika = scanner.nextLine().toLowerCase();
@@ -25,6 +26,7 @@ public class Main {
 
                 if (haslo.equals(zarejestrowaniUzytkownicy.get(nazwaUzytkownika))) {
                     System.out.println("Witaj " + nazwaUzytkownika + ".");
+                    BasicOptionSimulation.runBasicOptionSimulation();
                     break;
                 } else {
                     System.out.println("Nieprawidłowe hasło. Spróbuj ponownie.");
@@ -35,4 +37,5 @@ public class Main {
         }
         scanner.close();
     }
+
 }
