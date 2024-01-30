@@ -1,12 +1,15 @@
 package pl.isa.freshmenindustries.managegame;
 
+import pl.isa.freshmenindustries.basicOptions.BasicOptionSimulation;
 import pl.isa.freshmenindustries.game.Game;
+import pl.isa.freshmenindustries.game.GameList;
 
 import java.util.List;
 
 import static pl.isa.freshmenindustries.message.OutputMessage.printOutputMessage;
 
 public class ManageGameMenu {
+    private static List<Game> listOfGames = GameList.games();
 
     public static void getOptions(List<ManageGameOption> manageGameOptions) {
         manageGameOptions.forEach(o -> {
@@ -21,7 +24,7 @@ public class ManageGameMenu {
         printOutputMessage("Select one of the below option by entering number from 1 to " + manageGameOptions + " : ");
     }
 
-    public static void goAndRunTheOption(int option, List<Game> games) {
+    public static void goAndRunTheOption(int option) {
         switch (option) {
             case 1:
                 System.out.println("Odpalamy opcje 1");
@@ -30,10 +33,10 @@ public class ManageGameMenu {
                 System.out.println("Odpalamy opcje 2");
                 break;
             case 3:
-                RemoveGameSimulation.removeGame(games);
+                RemoveGameSimulation.removeGame(listOfGames);
                 break;
             case 4:
-                System.out.println("Odpalamy opcje 4");
+                BasicOptionSimulation.runBasicOptionSimulation();
                 break;
         }
     }

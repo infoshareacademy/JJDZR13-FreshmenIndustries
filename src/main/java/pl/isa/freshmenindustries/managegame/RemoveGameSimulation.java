@@ -25,6 +25,7 @@ public class RemoveGameSimulation {
             if (input != null && input >= 1 && input <= listOfGames.size()) {
                 if (gameUtils.runAndConfirmRemoveGame(listOfGames.get(input - 1).getName())) {
                     gameUtils.removeGameFromList(listOfGames, input);
+                    gameUtils.displayListOfGames(listOfGames);
                     break;
                 } else {
                     break;
@@ -33,5 +34,6 @@ public class RemoveGameSimulation {
                 printOutputMessage(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
             }
         }
+        ManageGameSimulation.startManageOptions();
     }
 }
