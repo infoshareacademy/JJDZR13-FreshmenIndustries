@@ -10,7 +10,7 @@ public class Main {
         zarejestrowaniUzytkownicy.put("tomek", "1234");
         zarejestrowaniUzytkownicy.put("arleta", "1234");
         zarejestrowaniUzytkownicy.put("michał", "1234");
-        zarejestrowaniUzytkownicy.put("krzystof", "1234");
+        zarejestrowaniUzytkownicy.put("krzysztof", "1234");
         zarejestrowaniUzytkownicy.put("adrian", "1234");
 
         Scanner scanner = new Scanner(System.in);
