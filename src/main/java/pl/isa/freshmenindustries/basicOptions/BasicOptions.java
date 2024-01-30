@@ -1,7 +1,9 @@
 package pl.isa.freshmenindustries.basicOptions;
 
+import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
+import pl.isa.freshmenindustries.game.Game;
 import java.util.Scanner;
-
+import java.util.List;
 public class BasicOptions {
     public void displayOptions() {
         System.out.println("Options:");
@@ -23,7 +25,7 @@ public class BasicOptions {
         return number;
     }
 
-    public void enterInput() {
+    public void enterInput(List<Game> listOfGames) {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
         while (number != 1 && number != 2) {
@@ -37,7 +39,7 @@ public class BasicOptions {
                 break;
             case 2:
                 System.out.println(chooseOption(number));
-                System.out.println("You are in manage games menu.");
+                ManageGameSimulation.startManageOptions(listOfGames);
                 break;
         }
     }
