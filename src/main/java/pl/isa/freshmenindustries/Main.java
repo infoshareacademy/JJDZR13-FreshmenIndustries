@@ -1,14 +1,12 @@
 package pl.isa.freshmenindustries;
+
 import pl.isa.freshmenindustries.basicOptions.BasicOptions;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import pl.isa.freshmenindustries.game.GameList;
-import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

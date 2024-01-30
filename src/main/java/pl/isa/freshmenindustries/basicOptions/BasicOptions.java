@@ -1,9 +1,11 @@
 package pl.isa.freshmenindustries.basicOptions;
 
-import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
 import pl.isa.freshmenindustries.game.Game;
-import java.util.Scanner;
+import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
+
 import java.util.List;
+import java.util.Scanner;
+
 public class BasicOptions {
     public void displayOptions() {
         System.out.println("Options:");
