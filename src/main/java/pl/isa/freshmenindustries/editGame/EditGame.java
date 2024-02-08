@@ -27,15 +27,10 @@ public class EditGame {
             Integer input = Validator.validateIntegerInput(scanner.nextLine());
             if (input != null && input >= 1 && input <= listOfGames.size()) {
                 if (enterNameAndDescription.runAndConfirmEditGame(listOfGames.get(input - 1).getName())) {
-                    enterNameAndDescription.enterNameAndDescription(listOfGames, input - 1);
-                    if (listOfGames.get(input - 1).getName() != null && listOfGames.get(input - 1).getDescription() != null) {
-                        printOutputMessage(GAME_EDITED);
-                        gameUtils.displayListOfGamesWithDescription(listOfGames);
-                        break;
-                    } else {
-                        printOutputMessage(NOT_FILLED);
-                        enterNameAndDescription.enterNameAndDescription(listOfGames, input);
-                    }
+                    enterNameAndDescription.enterName(listOfGames, input - 1);
+                    enterNameAndDescription.enterDescription(listOfGames, input - 1);
+                    printOutputMessage(GAME_EDITED);
+                    gameUtils.displayListOfGamesWithDescription(listOfGames);
                     break;
                 } else {
                     break;
