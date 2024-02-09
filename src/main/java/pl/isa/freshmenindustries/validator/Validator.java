@@ -8,9 +8,4 @@ public final class Validator {
             return null;
         }
     }
-
-    public static boolean validateAndCompareStringInput(String input, String compareString) {
-        return !input.isEmpty() && !input.equals(compareString);
-    }
-
 }
