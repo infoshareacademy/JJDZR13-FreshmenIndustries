@@ -1,7 +1,6 @@
 package pl.isa.freshmenindustries.editGame;
 
 import pl.isa.freshmenindustries.game.Game;
-import pl.isa.freshmenindustries.validator.Validator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -31,31 +30,35 @@ public class EnterNameAndDescription {
     }
 
     public void enterName(List<Game> list, int index) {
-        System.out.println("Enter new name of the game and press Enter:");
-        String oldName = list.get(index).getName();
-        enterInputToEditGame(oldName, list.get(index).setName(scanner.nextLine() + ", "));
-    }
-
-    public void enterDescription(List<Game> list, int index) {
-        System.out.println("Enter new description of the game and press Enter:");
-        String oldDescription = list.get(index).getName();
-        enterInputToEditGame(list.get(index).setDescription(scanner.nextLine()), oldDescription);
-    }
-
-    public String enterInputToEditGame(String input, String toCompareString) {
-        String newInput;
         while (true) {
-            if (Validator.validateAndCompareStringInput(input, toCompareString)) {
-                newInput = input;
+            System.out.println("Enter new name of the game and press Enter:");
+            String oldName = list.get(index).getName();
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty() && !newName.equals(oldName)) {
+                list.get(index).setName(newName + ", ");
                 break;
             } else {
                 System.out.println("The value can't be empty or the same.");
             }
         }
-        return newInput;
+    }
+
+    public void enterDescription(List<Game> list, int index) {
+        while (true) {
+            System.out.println("Enter new description of the game and press Enter:");
+            String oldDescription = list.get(index).getDescription();
+            String newDescription = scanner.nextLine();
+            if (!newDescription.isEmpty() && !newDescription.equals(oldDescription)) {
+                list.get(index).setDescription(newDescription);
+                break;
+            } else {
+                System.out.println("The value can't be empty or the same.");
+            }
+        }
     }
 
     public final void displayFunctionTitleWithLimit(int limit) {
         printOutputMessage(EDIT_TITLE + limit);
     }
 }
+

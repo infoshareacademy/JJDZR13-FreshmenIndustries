@@ -39,6 +39,5 @@ public class EditGame {
                 printOutputMessage(INCORRECT_VALUE_PLEASE_TRY_AGAIN);
             }
         }
-
     }
 }
