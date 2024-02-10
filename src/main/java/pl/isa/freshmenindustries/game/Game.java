@@ -15,7 +15,7 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
-    }
+        }
 
     public String getDescription() {
         return description;
@@ -23,7 +23,7 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+        }
 
 }
 

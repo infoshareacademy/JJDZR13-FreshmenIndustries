@@ -10,6 +10,10 @@ public class GameUtils {
     public final void displayListOfGames(List<Game> list) {
         list.forEach(n -> printOutputMessage(list.indexOf(n) + 1 + ". " + n.getName()));
     }
+    public final void displayListOfGamesWithDescription(List<Game> list) {
+        list.forEach(n -> printOutputMessage(list.indexOf(n) + 1 + ". " + n.getName() + n.getDescription()));
+    }
+
 
     public final void displayFunctionTitleWithLimit(int limit) {
         printOutputMessage(REMOVE_TITLE + limit);

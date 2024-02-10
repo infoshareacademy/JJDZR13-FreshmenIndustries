@@ -6,9 +6,14 @@ public class OutputMessage {
     public static final String INCORRECT_VALUE_PLEASE_TRY_AGAIN = "Incorrect value. Please try again: ";
     public static final String LIST_OF_GAMES = "List of games: ";
     public static final String REMOVE_TITLE = "Select the game to remove by entering number from 1 to ";
+    public static final String EDIT_TITLE = "Select the game to edit by entering number from 1 to ";
     public static final String REMOVE_CONFIRMATION_TITLE = "Please confirm that you would like to remove game.";
+    public static final String EDIT_CONFIRMATION_TITLE = "Please confirm that you would like to edit game.";
     public static final String YES_OR_NO_INFO = "Enter Yes or Not (Y/N)";
     public static final String GAME_REMOVED = "Game successfully removed.";
+    public static final String GAME_EDITED = "Game has been successfully edited.";
+    public static final String NOT_FILLED = "You haven't provided name and/or description. Please try again: ";
+
 
     public static void printOutputMessage(String message) {
         System.out.println(message);
