@@ -13,19 +13,17 @@ public class Game {
         return name;
     }
 
-    public String setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return name;
-    }
+        }
 
     public String getDescription() {
         return description;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return description;
-    }
+        }
 
 }
 
