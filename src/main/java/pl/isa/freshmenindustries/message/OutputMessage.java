@@ -12,7 +12,9 @@ public class OutputMessage {
     public static final String YES_OR_NO_INFO = "Enter Yes or Not (Y/N)";
     public static final String GAME_REMOVED = "Game successfully removed.";
     public static final String GAME_EDITED = "Game has been successfully edited.";
-    public static final String NOT_FILLED = "You haven't provided name and/or description. Please try again: ";
+    public static final String ENTER_NEW_NAME  = "Enter new name of the game and press Enter:";
+    public static final String INPUT_VALUE_CANT_BE_EMPTY  = "The value can't be empty or the same.";
+    public static final String ENTER_NEW_DESCRIPTION  = "Enter new description of the game and press Enter:";
 
 
     public static void printOutputMessage(String message) {
