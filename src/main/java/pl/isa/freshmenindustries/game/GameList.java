@@ -12,4 +12,11 @@ public class GameList {
         games.add(new Game("Rush Hour", "Łamigłówka składa się z planszy, przedstawiającej parking z wyjazdem oraz pojazdów, które mogą poruszać się do przodu i do tyłu."));
         return games;
     }
+
+    public static boolean containsGame(String name) {
+        return false;
+    }
+
+    public void add(Game game) {
+    }
 }
