@@ -31,28 +31,28 @@ public class EnterNameAndDescription {
 
     public void enterName(List<Game> list, int index) {
         while (true) {
-            System.out.println("Enter new name of the game and press Enter:");
+            System.out.println(ENTER_NEW_NAME);
             String oldName = list.get(index).getName();
             String newName = scanner.nextLine();
             if (!newName.isEmpty() && !newName.equals(oldName)) {
-                list.get(index).setName(newName + ", ");
+                list.get(index).setName(newName);
                 break;
             } else {
-                System.out.println("The value can't be empty or the same.");
+                System.out.println(INPUT_VALUE_CANT_BE_EMPTY);
             }
         }
     }
 
     public void enterDescription(List<Game> list, int index) {
         while (true) {
-            System.out.println("Enter new description of the game and press Enter:");
+            System.out.println(ENTER_NEW_DESCRIPTION);
             String oldDescription = list.get(index).getDescription();
             String newDescription = scanner.nextLine();
             if (!newDescription.isEmpty() && !newDescription.equals(oldDescription)) {
                 list.get(index).setDescription(newDescription);
                 break;
             } else {
-                System.out.println("The value can't be empty or the same.");
+                System.out.println(INPUT_VALUE_CANT_BE_EMPTY);
             }
         }
     }

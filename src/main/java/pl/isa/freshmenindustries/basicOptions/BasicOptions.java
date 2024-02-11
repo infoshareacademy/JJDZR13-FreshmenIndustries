@@ -1,5 +1,6 @@
 package pl.isa.freshmenindustries.basicOptions;
 
+import pl.isa.freshmenindustries.game.GameStarter;
 import pl.isa.freshmenindustries.managegame.ManageGameSimulation;
 
 import java.util.Scanner;
@@ -35,11 +36,9 @@ public class BasicOptions {
         }
         switch (number) {
             case 1:
-                System.out.println(chooseOption(number));
-                System.out.println("You started new game.");
+                GameStarter.startNewGame();
                 break;
             case 2:
-                System.out.println(chooseOption(number));
                 ManageGameSimulation.startManageOptions();
                 break;
         }

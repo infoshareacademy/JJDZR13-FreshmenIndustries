@@ -1,6 +1,8 @@
 package pl.isa.freshmenindustries.managegame;
 
 import pl.isa.freshmenindustries.basicOptions.BasicOptionSimulation;
+import pl.isa.freshmenindustries.editGame.EditGame;
+import pl.isa.freshmenindustries.editGame.EditGameClass;
 import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.game.GameList;
 
@@ -30,7 +32,7 @@ public class ManageGameMenu {
                 System.out.println("Odpalamy opcje 1");
                 break;
             case 2:
-                System.out.println("Odpalamy opcje 2");
+                EditGameClass.runEditGameClass(listOfGames);
                 break;
             case 3:
                 RemoveGameSimulation.removeGame(listOfGames);
