@@ -11,7 +11,7 @@ public class GameUtils {
         list.forEach(n -> printOutputMessage(list.indexOf(n) + 1 + ". " + n.getName()));
     }
     public final void displayListOfGamesWithDescription(List<Game> list) {
-        list.forEach(n -> printOutputMessage(list.indexOf(n) + 1 + ". " + n.getName() + n.getDescription()));
+        list.forEach(n -> printOutputMessage(list.indexOf(n) + 1 + ". " + n.getName() + ", " +  n.getDescription()));
     }
 
 
