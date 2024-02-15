@@ -19,4 +19,5 @@ public class GameList {
 
     public void add(Game game) {
     }
+
 }

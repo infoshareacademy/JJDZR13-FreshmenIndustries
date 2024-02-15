@@ -29,7 +29,7 @@ public class ManageGameMenu {
     public static void goAndRunTheOption(int option) {
         switch (option) {
             case 1:
-                System.out.println("Odpalamy opcje 1");
+                AddNewGame.addingNewGame(listOfGames);
                 break;
             case 2:
                 EditGameClass.runEditGameClass(listOfGames);
