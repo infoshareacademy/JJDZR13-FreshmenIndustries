@@ -13,11 +13,4 @@ public class GameList {
         return games;
     }
 
-    public static boolean containsGame(String name) {
-        return false;
-    }
-
-    public void add(Game game) {
-    }
-
 }

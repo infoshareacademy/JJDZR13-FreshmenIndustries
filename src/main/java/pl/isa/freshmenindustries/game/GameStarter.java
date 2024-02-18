@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class GameStarter {
 
-//    static private Scanner scanner;
     static private List<Game> games = GameList.games();
     private static GameUtils gameUtils = new GameUtils();
 
