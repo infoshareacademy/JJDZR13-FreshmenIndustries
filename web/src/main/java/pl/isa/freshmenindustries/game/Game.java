@@ -13,6 +13,8 @@ public class Game {
     private UUID id;
     private String name;
     private String description;
+    private Boolean isDeleted;
+
 
     @Override
     public boolean equals(Object o) {

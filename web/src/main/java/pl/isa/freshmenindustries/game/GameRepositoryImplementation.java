@@ -17,28 +17,32 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GameRepositoryImplementation implements GameRepository {
     ObjectMapper objectMapper = new ObjectMapper();
+    List<Game> allGames = new ArrayList<>();
     File gamesFilePath = new File("C:\\Users\\mwabnik\\JJDZR13-FreshmenIndustries\\web\\src\\main\\resources\\source\\games.json");
     public List<Game> getAllGames() {
         if (gamesFilePath.exists()) {
             try {
-                return objectMapper.readValue(gamesFilePath, new TypeReference<List<Game>>() {
+                allGames = objectMapper.readValue(gamesFilePath, new TypeReference<List<Game>>() {
                 });
             } catch (IOException e) {
                 log.info(e.getMessage());
             }
         }
-        return new ArrayList<Game>();
+        return allGames.stream().filter(game -> !game.getIsDeleted()).collect(Collectors.toList());
     }
     public void createGame(Game game) {
             List<Game> games = getAllGames();
             game.setId(UUID.randomUUID());
+            game.setIsDeleted(Boolean.FALSE);
             games.add(game);
             writeEntitiesToFile(games, gamesFilePath);
     }
     public void updateGame(Game game) {
         List<Game> games = getAllGames();
-        game.setName(game.getName());
-        game.setDescription(game.getDescription());
+//        game.setName(game.getName());
+//        game.setDescription(game.getDescription());
+        games.remove(game);
+        game.setIsDeleted(Boolean.FALSE);
         games.add(game);
         writeEntitiesToFile(games, gamesFilePath);
     }
@@ -51,12 +55,13 @@ public class GameRepositoryImplementation implements GameRepository {
         return games.stream().filter(n -> n.getId().equals(id)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + id));
     }
-    public Boolean deleteGame(UUID id) {
+    public void deleteGame(UUID id) {
         List<Game> games = getAllGames();
         Game game = getGameById(id);
         games.remove(game);
+        game.setIsDeleted(Boolean.TRUE);
+        games.add(game);
         writeEntitiesToFile(games, gamesFilePath);
-        return Boolean.TRUE;
     }
     private void writeEntitiesToFile(List entities, File file) {
         try{

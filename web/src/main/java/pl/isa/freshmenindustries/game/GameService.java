@@ -41,8 +41,8 @@ public class GameService {
         log.info("Get game with id : " +  id);
         return gameRepository.getGameById(id);
     }
-    public Boolean deleteGame(UUID id) {
+    public void deleteGame(UUID id) {
         log.info("Delete game with id : " +  id);
-        return gameRepository.deleteGame(id);
+        gameRepository.deleteGame(id);
     }
 }

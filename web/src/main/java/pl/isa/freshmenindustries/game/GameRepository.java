@@ -14,6 +14,6 @@ public interface GameRepository {
     void updateGame(Game game);
     Game getGameById(UUID id);
 
-    Boolean deleteGame(UUID id);
+    void deleteGame(UUID id);
     List<Game> getGamesByName(String name);
 }
