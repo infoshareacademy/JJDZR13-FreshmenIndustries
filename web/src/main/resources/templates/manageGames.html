@@ -1,6 +1,10 @@
 <div th:fragment="content" class="container">
-    <div th:if="${error != ''}" class="alert alert-danger" role="alert">
-        <div th:text="${error}">...</div>
+    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="manage-games" type="button" class="button btn-close">close</a>
+    </div>
+    <div th:if="${response.message != null && response.isSuccess}" class="alert alert-success" role="alert">
+        <div th:text="${response.message}">...</div>
         <a href="manage-games" type="button" class="button btn-close">close</a>
     </div>
     <div th:fragment="content" class="container">

@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,8 @@ import java.util.stream.Collectors;
 public class GameRepositoryImplementation implements GameRepository {
     ObjectMapper objectMapper = new ObjectMapper();
     List<Game> allGames = new ArrayList<>();
-    File gamesFilePath = new File("C:\\Users\\mwabnik\\JJDZR13-FreshmenIndustries\\web\\src\\main\\resources\\source\\games.json");
+    File gamesFilePath = new File("C:/Users/mwabnik/JJDZR13-FreshmenIndustries/web/src/main/resources/source/games.json");
+
     public List<Game> getAllGames() {
         if (gamesFilePath.exists()) {
             try {
@@ -30,13 +30,15 @@ public class GameRepositoryImplementation implements GameRepository {
         }
         return allGames.stream().filter(game -> !game.getIsDeleted()).collect(Collectors.toList());
     }
+
     public void createGame(Game game) {
-            List<Game> games = getAllGames();
-            game.setId(UUID.randomUUID());
-            game.setIsDeleted(Boolean.FALSE);
-            games.add(game);
-            writeEntitiesToFile(games, gamesFilePath);
+        List<Game> games = getAllGames();
+        game.setId(UUID.randomUUID());
+        game.setIsDeleted(Boolean.FALSE);
+        games.add(game);
+        writeEntitiesToFile(games, gamesFilePath);
     }
+
     public void updateGame(Game game) {
         List<Game> games = getAllGames();
 //        game.setName(game.getName());
@@ -46,15 +48,18 @@ public class GameRepositoryImplementation implements GameRepository {
         games.add(game);
         writeEntitiesToFile(games, gamesFilePath);
     }
+
     public List<Game> getGamesByName(String name) {
         List<Game> games = getAllGames();
         return games.stream().filter(n -> n.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
+
     public Game getGameById(UUID id) {
         List<Game> games = getAllGames();
         return games.stream().filter(n -> n.getId().equals(id)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + id));
     }
+
     public void deleteGame(UUID id) {
         List<Game> games = getAllGames();
         Game game = getGameById(id);
@@ -63,8 +68,9 @@ public class GameRepositoryImplementation implements GameRepository {
         games.add(game);
         writeEntitiesToFile(games, gamesFilePath);
     }
+
     private void writeEntitiesToFile(List entities, File file) {
-        try{
+        try {
             objectMapper.writeValue(file, entities);
         } catch (IOException e) {
             log.info(e.getMessage());

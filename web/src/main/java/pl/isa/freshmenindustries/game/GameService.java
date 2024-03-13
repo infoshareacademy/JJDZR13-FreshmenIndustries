@@ -2,47 +2,56 @@ package pl.isa.freshmenindustries.game;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pl.isa.freshmenindustries.response.Response;
 
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
 @Slf4j
 public class GameService {
     private final GameRepository gameRepository;
+
     public GameService(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
-    public List<Game> getAllGames() {
+    public Response getAllGames() {
         log.info("Getting all games list");
-        return gameRepository.getAllGames();
+        try {
+            return new Response(Boolean.TRUE, gameRepository.getAllGames());
+        } catch (Exception e) {
+            return new Response("General error occurred", Boolean.FALSE);
+        }
     }
-    public void createGame(Game game) {
-        log.info("Create game with name : " +  game.getName());
-        if(game.getName().isEmpty() || game.getDescription().isEmpty()) {
-            throw new IllegalArgumentException("Missing name or description");
+
+    public Response createGame(Game game) {
+        if (!gameRepository.getGamesByName(game.getName()).isEmpty()) {
+            return new Response("Game with provided name already exists", Boolean.FALSE);
         }
-        if(!gameRepository.getGamesByName(game.getName()).isEmpty()) {
-            throw new IllegalArgumentException("Game with provided name already exists.");
-        }
+        log.info("Create game with name : " + game.getName());
         gameRepository.createGame(game);
+        return new Response("Game created successfully", Boolean.TRUE);
     }
-    public void updateGame(Game game) {
-        log.info("Update game with id : " +  game.getId());
-        if(game.getName().isEmpty() || game.getDescription().isEmpty()) {
-            throw new IllegalArgumentException("Missing name or description");
-        }
+
+    public Response updateGame(Game game) {
+        log.info("Update game with id : " + game.getId());
         gameRepository.deleteGame(game.getId());
         gameRepository.updateGame(game);
+        return new Response("Game updated successfully", Boolean.TRUE);
     }
+
     public Game getGameById(UUID id) {
-        log.info("Get game with id : " +  id);
+        log.info("Get game with id : " + id);
         return gameRepository.getGameById(id);
     }
-    public void deleteGame(UUID id) {
-        log.info("Delete game with id : " +  id);
-        gameRepository.deleteGame(id);
+
+    public Response deleteGame(UUID id) {
+        log.info("Delete game with id : " + id);
+        try {
+            gameRepository.deleteGame(id);
+            return new Response("Game deleted", Boolean.TRUE);
+        } catch (Exception e) {
+            return new Response(e.getMessage(), Boolean.TRUE);
+        }
     }
 }
