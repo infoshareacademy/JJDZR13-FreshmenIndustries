@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class GameRepositoryImplementation implements GameRepository {
     ObjectMapper objectMapper = new ObjectMapper();
     List<Game> allGames = new ArrayList<>();
-    File gamesFilePath = new File("C:/Users/mwabnik/JJDZR13-FreshmenIndustries/web/src/main/resources/source/games.json");
+    File gamesFilePath = new File("web/src/main/resources/source/games.json");
 
     public List<Game> getAllGames() {
         if (gamesFilePath.exists()) {
