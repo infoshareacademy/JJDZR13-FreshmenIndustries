@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Repository
 public interface GameRepository {
+    List<Game> getAllActiveGames();
     List<Game> getAllGames();
 
     void createGame(Game game);

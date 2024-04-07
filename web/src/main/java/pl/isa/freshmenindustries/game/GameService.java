@@ -18,7 +18,7 @@ public class GameService {
     public Response getAllGames() {
         log.info("Getting all games list");
         try {
-            return new Response(Boolean.TRUE, gameRepository.getAllGames());
+            return new Response(Boolean.TRUE, gameRepository.getAllActiveGames());
         } catch (Exception e) {
             return new Response("General error occurred", Boolean.FALSE);
         }

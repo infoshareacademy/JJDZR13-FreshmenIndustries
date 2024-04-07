@@ -19,7 +19,7 @@ public class GameRepositoryImplementation implements GameRepository {
     List<Game> allGames = new ArrayList<>();
     File gamesFilePath = new File("web/src/main/resources/source/games.json");
 
-    public List<Game> getAllGames() {
+    public List<Game> getAllActiveGames() {
         if (gamesFilePath.exists()) {
             try {
                 allGames = objectMapper.readValue(gamesFilePath, new TypeReference<List<Game>>() {
@@ -29,6 +29,18 @@ public class GameRepositoryImplementation implements GameRepository {
             }
         }
         return allGames.stream().filter(game -> !game.getIsDeleted()).collect(Collectors.toList());
+    }
+
+    public List<Game> getAllGames() {
+        if (gamesFilePath.exists()) {
+            try {
+                allGames = objectMapper.readValue(gamesFilePath, new TypeReference<List<Game>>() {
+                });
+            } catch (IOException e) {
+                log.info(e.getMessage());
+            }
+        }
+        return allGames;
     }
 
     public void createGame(Game game) {
@@ -50,7 +62,7 @@ public class GameRepositoryImplementation implements GameRepository {
     }
 
     public List<Game> getGamesByName(String name) {
-        List<Game> games = getAllGames();
+        List<Game> games = getAllActiveGames();
         return games.stream().filter(n -> n.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
 
