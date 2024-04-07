@@ -1,0 +1,37 @@
+<div th:fragment="content" class="container">
+    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="start-new-game" type="button" class="button btn-close">close</a>
+    </div>
+    <div th:if="${response.message != null && response.isSuccess}" class="alert alert-success" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="start-new-game" type="button" class="button btn-close">close</a>
+    </div>
+    <div th:fragment="content" class="container">
+        <div class="card mt-5" style="width: 80%; margin: 0 auto;">
+            <div class="card-top text-center p-2">
+                <h3 class="card-title">Available games:</h3>
+            </div>
+            <div class="modal fade" id="deleteGameModal" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalLabel" aria-hidden="true">
+                <div th:replace="~{fragments::startNewGameModal}"></div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Start new game</th>
+                    </tr>
+                    <tr th:each="game: ${gamesList}">
+                        <td th:text="${game.name}"></td>
+                        <td th:text="${game.description}"></td>
+                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-light btn-outline-dark editGameBtn" >Start new game</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
