@@ -1,4 +1,4 @@
-package pl.isa.freshmenindustries.controller;
+package pl.isa.freshmenindustries.game;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pl.isa.freshmenindustries.game.Game;
-import pl.isa.freshmenindustries.game.GameService;
 import pl.isa.freshmenindustries.response.Response;
 
 import java.util.UUID;
