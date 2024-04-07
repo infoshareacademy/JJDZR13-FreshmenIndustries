@@ -21,16 +21,6 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping("start-new-game")
-    public String startNewGame(Model model,
-                               @ModelAttribute("response") Response response,
-                               @ModelAttribute("game") Game game) {
-        model.addAttribute("gamesList", gameService.getAllGames().getData())
-                .addAttribute("response", response)
-                .addAttribute("game", game)
-                .addAttribute("content", "startNewGame");
-        return "main";
-    }
     @GetMapping("/manage-games")
     public String games(Model model,
                         @ModelAttribute("response") Response response,
@@ -47,6 +37,16 @@ public class GameController {
         return new ResponseEntity<>(gameService.getGameById(id), HttpStatus.OK);
     }
 
+    @GetMapping("start-new-game")
+    public String startNewGame(Model model,
+    @ModelAttribute("response") Response response,
+    @ModelAttribute("game") Game game) {
+        model.addAttribute("gamesList", gameService.getAllGames().getData())
+                .addAttribute("response", response)
+                .addAttribute("game", game)
+                .addAttribute("content", "startNewGame");
+        return "main";
+    }
 
     @PostMapping("/manage-games/create")
     public String createGame(@ModelAttribute Game game, RedirectAttributes redirectAttributes) {
