@@ -1,11 +1,9 @@
 package pl.isa.freshmenindustries.game;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+
 public interface GameRepository {
     List<Game> getAllActiveGames();
 

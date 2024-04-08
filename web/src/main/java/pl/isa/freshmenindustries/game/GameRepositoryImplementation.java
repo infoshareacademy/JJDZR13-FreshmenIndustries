@@ -3,7 +3,7 @@ package pl.isa.freshmenindustries.game;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,24 +12,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 @Slf4j
 public class GameRepositoryImplementation implements GameRepository {
     ObjectMapper objectMapper = new ObjectMapper();
     List<Game> allGames = new ArrayList<>();
     File gamesFilePath = new File("web/src/main/resources/source/games.json");
 
-    public List<Game> getAllActiveGames() {
-        if (gamesFilePath.exists()) {
-            try {
-                allGames = objectMapper.readValue(gamesFilePath, new TypeReference<List<Game>>() {
-                });
-            } catch (IOException e) {
-                log.info(e.getMessage());
-            }
-        }
-        return allGames.stream().filter(game -> !game.getIsDeleted()).collect(Collectors.toList());
-    }
 
     public List<Game> getAllGames() {
         if (gamesFilePath.exists()) {
@@ -43,6 +32,10 @@ public class GameRepositoryImplementation implements GameRepository {
         return allGames;
     }
 
+    public List<Game> getAllActiveGames() {
+        return getAllGames().stream().filter(game -> !game.getIsDeleted()).collect(Collectors.toList());
+    }
+
     public void createGame(Game game) {
         List<Game> games = getAllGames();
         game.setId(UUID.randomUUID());
@@ -53,8 +46,6 @@ public class GameRepositoryImplementation implements GameRepository {
 
     public void updateGame(Game game) {
         List<Game> games = getAllGames();
-//        game.setName(game.getName());
-//        game.setDescription(game.getDescription());
         games.remove(game);
         game.setIsDeleted(Boolean.FALSE);
         games.add(game);
@@ -67,7 +58,7 @@ public class GameRepositoryImplementation implements GameRepository {
     }
 
     public Game getGameById(UUID id) {
-        List<Game> games = getAllGames();
+        List<Game> games = getAllActiveGames();
         return games.stream().filter(n -> n.getId().equals(id)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + id));
     }
