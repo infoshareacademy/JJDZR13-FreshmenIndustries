@@ -12,7 +12,7 @@
             <div class="card-top text-center p-2">
                 <h3 class="card-title">Available games:</h3>
             </div>
-            <div class="modal fade" id="deleteGameModal" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalLabel" aria-hidden="true">
+            <div class="modal fade" id="startNewGameModal" tabindex="-1" role="dialog" aria-labelledby="startNewGameModalLabel" aria-hidden="true">
                 <div th:replace="~{fragments::startNewGameModal}"></div>
             </div>
             <div class="card-body">
@@ -26,7 +26,7 @@
                     <tr th:each="game: ${gamesList}">
                         <td th:text="${game.name}"></td>
                         <td th:text="${game.description}"></td>
-                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-light btn-outline-dark editGameBtn" >Start new game</a></td>
+                        <td><a th:href="@{/start-new-game/get/{id}(id=${game.id})}" class="btn btn-secondary btn-light btn-outline-dark startNewGameBtn" >Start new game</a></td>
                     </tr>
                     </tbody>
                 </table>
