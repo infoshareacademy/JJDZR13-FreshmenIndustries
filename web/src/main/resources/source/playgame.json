@@ -2,29 +2,6 @@
   {
     "id": "fd5fb446-17d3-46b4-b1d5-d66ca9f29231",
     "gameId": "047d4ca7-3374-4490-8429-6474b95b4801",
-    "startDate": "2024-01-01",
-    "endDate": null,
-    "finished": false
-  },
-  {
-    "id": "645ee361-1657-4973-9e21-80b6996a49a2",
-    "gameId": "047d4ca7-3374-4490-8429-6474b95b4801",
-    "startDate": "2024-01-01",
-    "endDate": null,
-    "finished": false
-  },
-  {
-    "id": "9ef84459-33e4-4d57-a887-cffdefcdd1a3",
-    "gameId": "fd5fb446-17d3-46b4-b1d5-d66ca9f29231",
-    "startDate": "2024-01-01",
-    "endDate": null,
-    "finished": false
-  },
-  {
-    "id": "9aa3815a-5705-43ea-b257-77725cdc8eaa",
-    "gameId": "62eab787-2843-40ae-a84f-29df5ded8a2e",
-    "startDate": "2024-04-19",
-    "endDate": "",
-    "finished": false
+    "startDate": "2024-01-01"
   }
 ]

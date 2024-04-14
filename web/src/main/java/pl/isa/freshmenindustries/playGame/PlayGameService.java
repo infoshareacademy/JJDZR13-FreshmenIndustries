@@ -2,10 +2,7 @@ package pl.isa.freshmenindustries.playGame;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.response.Response;
-
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -23,23 +20,5 @@ public class PlayGameService {
         } catch (Exception e) {
             return new Response("General error occurred", Boolean.FALSE);
         }
-    }
-
-    public PlayGame startGame(UUID gameID) {
-        return playGameRepository.createPlayGame(gameID);
-    }
-
-    public Response getPlayedGameListDto() {
-        log.info("Getting all play games list with top score user");
-        try {
-            return new Response(Boolean.TRUE, playGameRepository.getPlayedGameListDto());
-        } catch (Exception e) {
-            return new Response("General error occurred", Boolean.FALSE);
-        }
-    }
-
-    public PlayGame getPlayGameById(UUID id) {
-        log.info("Get play game with id : " + id);
-        return playGameRepository.getPlayGameById(id);
     }
 }
