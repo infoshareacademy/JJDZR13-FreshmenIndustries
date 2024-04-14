@@ -33,10 +33,10 @@ public class Game {
         return Objects.hash(id);
     }
 
-    @Getter
-    private LocalDateTime startDate;
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
+//    @Getter
+//    private LocalDateTime startDate;
+//    public void setStartDate(LocalDateTime startDate) {
+//        this.startDate = startDate;
+//    }
 }
 
