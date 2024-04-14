@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Slf4j
@@ -18,9 +19,13 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
     ObjectMapper objectMapper = new ObjectMapper();
     List<PlayGame> allPlayGames = new ArrayList<>();
     File playGamesFilePath = new File("web/src/main/resources/source/playgame.json");
-    @Override
-    public void createPlayGame(PlayGame playGame) {
 
+    @Override
+    public void createPlayGame(UUID gameID) {
+        List<PlayGame> playGameList = getAllPlayGame();
+        PlayGame playGame = new PlayGame(UUID.randomUUID(),gameID, "2024-01-01");
+        playGameList.add(playGame);
+        writeEntitiesToFile(playGameList, playGamesFilePath);
     }
 
     @Override
@@ -35,4 +40,12 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
         }
         return allPlayGames;
     }
-}
+
+        private void writeEntitiesToFile (List entities, File file){
+            try {
+                objectMapper.writeValue(file, entities);
+            } catch (IOException e) {
+                log.info(e.getMessage());
+            }
+        }
+    }
