@@ -2,7 +2,10 @@ package pl.isa.freshmenindustries.playGame;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.response.Response;
+
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -20,5 +23,9 @@ public class PlayGameService {
         } catch (Exception e) {
             return new Response("General error occurred", Boolean.FALSE);
         }
+    }
+        public Response startGame(UUID gameID) {
+            playGameRepository.createPlayGame(gameID);
+            return new Response("Game started", Boolean.TRUE);
     }
 }
