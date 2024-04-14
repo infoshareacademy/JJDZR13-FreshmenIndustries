@@ -75,4 +75,10 @@ public class GameController {
         redirectAttributes.addFlashAttribute("response", response);
         return "redirect:/manage-games";
     }
+    @GetMapping("/manage-games/play/{id}")
+    public String playGame(@PathVariable UUID id, Model model, RedirectAttributes redirectAttributes) {
+        Game game = gameService.getGameById(id);
+        model.addAttribute("game", game);
+        return "playGame";
+    }
 }

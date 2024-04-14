@@ -32,5 +32,11 @@ public class Game {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Getter
+    private LocalDateTime startDate;
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
 }
 

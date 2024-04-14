@@ -1,47 +1,51 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments::head}"></html>
+<body th:replace="~{fragments::body}">
 <div th:fragment="content" class="container">
-    <div th:if="${response.message != null && response.isSuccess}" class="alert alert-success" role="alert">
-        <div th:text="${response.message}">...</div>
-        <a th:href= "${'/play-game/' + playGame.id}" type="button" class="button btn-close">close</a>
-    </div>
-    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
-        <div th:text="${response.message}">...</div>
-        <a th:href= "${'/play-game/' + playGame.id}" type="button" class="button btn-close">close</a>
-    </div>
-    <div th:fragment="content" class="container">
-        <div class="card mt-5" style="width: 80%; margin: 0 auto;">
-            <div th:if="${game != null}" class="card-top p-2">
-                <h3 th:if="${playGame.isFinished == false}" class="card-title text-center" th:text="${'You started game ' + game.name}"></h3>
-                <h3 th:if="${playGame.isFinished == true}" class="card-title text-center" th:text="${'Score for the game ' + game.name}"></h3>
-                <button th:if="${playGame.isFinished == false}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserScoreModal">
-                    Add user score
-                </button>
-                <div class="modal fade" id="addUserScoreModal" tabindex="-1" aria-labelledby="addUserScoreLabel" aria-hidden="true">
-                    <div th:replace="~{fragments::addUserScoreModal}"></div>
+    <div class="card mt-5" style="width: 100%; margin: 0 auto;">
+        <div class="card-header">
+            <h3 class="card-title">Playing: {{ game.name }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Description: {{ game.description }}</p>
                 </div>
-                <span th:if="${#lists.isEmpty(userGameScores)}">There are now users with scores yet.</span>
-                <div th:unless="${#lists.isEmpty(userGameScores)}" class="card-body">
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <th>Position</th>
-                            <th>User name</th>
-                            <th>Score</th>
-                        </tr>
-                        <tr th:each="userGame, iStat: ${userGameScores}">
-                            <td th:text="${iStat.index + 1}"></td>
-                            <td th:text="${userGame.userId}"></td>
-                            <td th:text="${userGame.score}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <form th:action="@{/play-game/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
-                        <button type="submit" class="btn btn-primary" >
-                            Finish game
-                        </button>
-                    </form>
+                <div class="col-md-6">
+                    <label for="startDate">Start Date:</label>
+                    <input type="datetime-local" id="startDate" th:field="${game.startDate}" disabled>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
+            <hr>
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
+                    Add New User
+                </button>
+            </div>
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="addUserBtn">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="userTableBody">
