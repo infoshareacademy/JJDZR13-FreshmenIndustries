@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -31,4 +32,11 @@ public class Game {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Getter
+    private LocalDateTime startDate;
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
 }
+
