@@ -4,9 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.isa.freshmenindustries.response.Response;
 
-import java.util.List;
-import java.util.UUID;
-
 @Service
 @Slf4j
 public class UserGameService {
@@ -21,12 +18,9 @@ public class UserGameService {
         log.info("Create user game record");
         try {
             userGameRepository.createUserGame(userGame);
-            return new Response("User score added successfully", Boolean.TRUE);
+            return new Response("Game created successfully", Boolean.TRUE);
         } catch (Exception e) {
             return new Response("General error occurred", Boolean.FALSE);
         }
-    }
-    public List<UserGame> getUserGameByPlayGameId(UUID playGameId) {
-        return userGameRepository.getUserGameByPlayGameId(playGameId);
     }
 }
