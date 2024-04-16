@@ -12,19 +12,8 @@
             <div class="card-top text-center p-2">
                 <h3 class="card-title">Play game list:</h3>
             </div>
-            <form th:action="@{/play-games/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
-                <button type="submit" class="btn btn-primary" >
-                    Add new game
-                </button>
-            </form>
             <div class="modal fade" id="addNewGameModal" tabindex="-1" aria-labelledby="addNewGameModalLabel" aria-hidden="true">
                 <div th:replace="~{fragments::addNewGameModal}"></div>
-            </div>
-            <div class="modal fade" id="editGameModal" tabindex="-1" aria-labelledby="editGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::editGameModal}"></div>
-            </div>
-            <div class="modal fade" id="deleteGameModal" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::deleteGameModal}"></div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -43,6 +32,11 @@
                     </tr>
                     </tbody>
                 </table>
+                <form th:action="@{/play-game/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
+                    <button type="submit" class="btn btn-primary" >
+                        Add new game
+                    </button>
+                </form>
             </div>
         </div>
     </div>
