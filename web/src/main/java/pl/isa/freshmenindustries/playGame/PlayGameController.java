@@ -20,26 +20,19 @@ public class PlayGameController {
     public PlayGameController(PlayGameService playGameService) {
         this.playGameService = playGameService;
     }
-    @GetMapping("/play-games")
-    public String games(Model model,
-                        @ModelAttribute("response") Response response,
-                        @ModelAttribute("game") Game game) {
+    @GetMapping("/play-game")
+    public String playGames(Model model,
+                        @ModelAttribute("response") Response response) {
         Response result = playGameService.getAllPlayGames();
-        if(result.getIsSuccess()) {
-            model.addAttribute("playGameList", result.getData())
-//                .addAttribute("response", response)
-//                .addAttribute("game", game)
-                    .addAttribute("content", "playGame");
-        } else {
-            //TODO do dodania obsługa błędu
-//            model.addAttribute();
-        }
+        model.addAttribute("playGameList", result.getData())
+                .addAttribute("response", response)
+                .addAttribute("content", "playGame");
         return "main";
     }
 
-    @PostMapping("/play-games/start/{id}")
-    public String playGame(@PathVariable UUID id, Model model, RedirectAttributes redirectAttributes) {
-        Response game = playGameService.startGame(id);
-        return "redirect:/play-games";
+    @PostMapping("/play-game/start/{id}")
+    public String startPlayGame(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        playGameService.startGame(id);
+        return "redirect:/play-game";
     }
 }
