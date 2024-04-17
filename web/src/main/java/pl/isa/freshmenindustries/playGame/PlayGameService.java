@@ -28,4 +28,12 @@ public class PlayGameService {
             playGameRepository.createPlayGame(gameID);
             return new Response("Game started", Boolean.TRUE);
     }
+    public Response getPlayedGameListDto() {
+        log.info("Getting all play games list with top score user");
+        try {
+            return new Response(Boolean.TRUE, playGameRepository.getPlayedGameListDto());
+        } catch (Exception e) {
+            return new Response("General error occurred", Boolean.FALSE);
+        }
+    }
 }
