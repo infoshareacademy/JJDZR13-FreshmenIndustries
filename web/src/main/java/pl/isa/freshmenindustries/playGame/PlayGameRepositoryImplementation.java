@@ -11,6 +11,7 @@ import pl.isa.freshmenindustries.userGame.UserGameRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -36,7 +37,7 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
     @Override
     public void createPlayGame(UUID gameID) {
         List<PlayGame> playGameList = getAllPlayGame();
-        PlayGame playGame = new PlayGame(UUID.randomUUID(), gameID, "2024-01-01");
+        PlayGame playGame = new PlayGame(UUID.randomUUID(), gameID, LocalDate.now().toString());
         playGameList.add(playGame);
         writeEntitiesToFile(playGameList, playGamesFilePath);
     }

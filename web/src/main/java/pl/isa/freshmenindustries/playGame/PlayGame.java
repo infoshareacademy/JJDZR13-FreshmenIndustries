@@ -16,4 +16,6 @@ public class PlayGame {
     private UUID id;
     private UUID gameId;
     private String startDate;
+    private String endDate;
+    private boolean isFinished;
 }
