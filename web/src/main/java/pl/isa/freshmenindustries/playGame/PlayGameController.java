@@ -20,17 +20,18 @@ public class PlayGameController {
     public PlayGameController(PlayGameService playGameService) {
         this.playGameService = playGameService;
     }
+
     @GetMapping("/play-game/{id}")
     public String playGames(Model model,
                             @PathVariable UUID id) {
-        model.addAttribute("gameId", id)
+        model.addAttribute("playGameId", id)
                 .addAttribute("content", "playGame");
         return "main";
     }
 
     @PostMapping("/play-game/start")
-    public String startPlayGame(@ModelAttribute("gameId") UUID gameId, RedirectAttributes redirectAttributes) {
-        playGameService.startGame(gameId);
-        return "redirect:/play-game/" + gameId;
+    public String startPlayGame(@ModelAttribute("gameId") UUID playGameId, RedirectAttributes redirectAttributes) {
+        PlayGame playGame = playGameService.startGame(playGameId);
+        return "redirect:/play-game/" + playGame.getId();
     }
 }
