@@ -35,11 +35,12 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
 
 
     @Override
-    public void createPlayGame(UUID gameID) {
+    public PlayGame createPlayGame(UUID gameID) {
         List<PlayGame> playGameList = getAllPlayGame();
-        PlayGame playGame = new PlayGame(UUID.randomUUID(), gameID, LocalDate.now().toString());
+        PlayGame playGame = new PlayGame(UUID.randomUUID(), gameID, LocalDate.now().toString(), "", false);
         playGameList.add(playGame);
         writeEntitiesToFile(playGameList, playGamesFilePath);
+        return playGame;
     }
 
     @Override
