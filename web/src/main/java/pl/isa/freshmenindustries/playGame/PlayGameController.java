@@ -23,8 +23,7 @@ public class PlayGameController {
     @GetMapping("/play-game")
     public String playGames(Model model,
                         @ModelAttribute("response") Response response) {
-        Response result = playGameService.getAllPlayGames();
-        model.addAttribute("playGameList", result.getData())
+        model.addAttribute("playGameList", playGameService.getPlayedGameListDto().getData())
                 .addAttribute("response", response)
                 .addAttribute("content", "playGame");
         return "main";

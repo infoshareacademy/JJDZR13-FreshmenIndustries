@@ -53,12 +53,12 @@ public class GameRepositoryImplementation implements GameRepository {
     }
 
     public List<Game> getGamesByName(String name) {
-        List<Game> games = getAllActiveGames();
+        List<Game> games = getAllGames();
         return games.stream().filter(n -> n.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
 
     public Game getGameById(UUID id) {
-        List<Game> games = getAllActiveGames();
+        List<Game> games = getAllGames();
         return games.stream().filter(n -> n.getId().equals(id)).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + id));
     }

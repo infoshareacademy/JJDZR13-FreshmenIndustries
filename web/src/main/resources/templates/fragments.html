@@ -128,7 +128,7 @@
             Are you sure You want to start new game?
         </div>
         <div class="modal-footer">
-            <form method="post">
+            <form th:action="@{/}" method="post">
                 <input type="hidden" class="form-control" id="newGameId" name="newGame" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Yes, start new game</button>
