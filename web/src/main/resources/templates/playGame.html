@@ -19,16 +19,15 @@
                 <table class="table table-striped">
                     <tbody>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Edit</th>
+                        <th>Game name</th>
+                        <th>Top scored user</th>
+                        <th>Top score</th>
                         <th>Delete</th>
                     </tr>
                     <tr th:each="playGame: ${playGameList}">
-                        <td th:text="${playGame.id}"></td>
-                        <td th:text="${playGame.startDate}"></td>
-<!--                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-light btn-outline-dark editGameBtn" >Edit</a></td>-->
-<!--                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-dark btn-outline-light deleteGameBtn">Delete</a></td>-->
+                        <td th:text="${playGame.gameName}"></td>
+                        <td th:text="${playGame.topScoreUserName}"></td>
+                        <td th:text="${playGame.topScore}"></td>
                     </tr>
                     </tbody>
                 </table>

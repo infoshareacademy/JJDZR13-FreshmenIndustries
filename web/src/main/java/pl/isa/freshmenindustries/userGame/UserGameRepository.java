@@ -11,4 +11,6 @@ public interface UserGameRepository {
     List<UserGame> getAllUserGame();
 
     List<UserGame> getUserGameByGameId(UUID playGameId);
+
+    UserGame getTopScoredRecordForGameByGameId(UUID playGameId);
 }

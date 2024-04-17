@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,5 +14,4 @@ public class PlayedGamesDTO {
     private String topScoreUserName;
     private int topScore;
     private boolean isCompleted;
-    private UUID playGameId;
 }
