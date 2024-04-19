@@ -54,10 +54,5 @@ public class GameService {
             return new Response(e.getMessage(), Boolean.TRUE);
         }
     }
-//    public Response updateGameStartDate(UUID id, LocalDateTime startDate) {
-//        Game game = getGameById(id);
-//        game.setStartDate(startDate);
-//        gameRepository.updateGame(game);
-//        return new Response("Game start date updated successfully", Boolean.TRUE);
-//    }
+
 }

@@ -7,7 +7,7 @@ public interface PlayGameRepository {
 
     List<PlayGame> getAllPlayGame();
 
-    void createPlayGame(UUID gameID);
+    PlayGame createPlayGame(UUID gameID);
 
     List<PlayedGamesDTO> getPlayedGameListDto();
 

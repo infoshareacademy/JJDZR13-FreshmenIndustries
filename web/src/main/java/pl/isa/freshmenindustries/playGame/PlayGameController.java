@@ -31,6 +31,15 @@ public class PlayGameController {
         this.userGameService = userGameService;
     }
 
+    @GetMapping("/played-games")
+    public String playedGames(Model model) {
+        Response response = playGameService.getPlayedGameListDto();
+        model.addAttribute("playedGamesWithTopScoreUser", response.getData())
+                .addAttribute("response", response)
+                .addAttribute("content", "playedGames");
+        return "main";
+    }
+
     @GetMapping("/play-game/{playGameId}")
     public String playGames(Model model,
                             @ModelAttribute("response") Response response,
@@ -53,8 +62,8 @@ public class PlayGameController {
     }
 
     @PostMapping("/play-game/start")
-    public String startPlayGame(@ModelAttribute("gameId") UUID playGameId, RedirectAttributes redirectAttributes) {
-        PlayGame playGame = playGameService.startGame(playGameId);
+    public String startPlayGame(@ModelAttribute("gameId") UUID gameId, RedirectAttributes redirectAttributes) {
+        PlayGame playGame = playGameService.startGame(gameId);
         return "redirect:/play-game/" + playGame.getId();
     }
 }
