@@ -1,41 +1,45 @@
 <div th:fragment="content" class="container">
-    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
-        <div th:text="${response.message}">...</div>
-        <a href="manage-games" type="button" class="button btn-close">close</a>
-    </div>
     <div th:if="${response.message != null && response.isSuccess}" class="alert alert-success" role="alert">
         <div th:text="${response.message}">...</div>
-        <a href="manage-games" type="button" class="button btn-close">close</a>
+        <a th:href= "${'/play-game/' + playGame.id}" type="button" class="button btn-close">close</a>
+    </div>
+    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a th:href= "${'/play-game/' + playGame.id}" type="button" class="button btn-close">close</a>
     </div>
     <div th:fragment="content" class="container">
         <div class="card mt-5" style="width: 80%; margin: 0 auto;">
-            <div class="card-top text-center p-2">
-                <h3 class="card-title">Play game list:</h3>
-            </div>
-            <div class="modal fade" id="addNewGameModal" tabindex="-1" aria-labelledby="addNewGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::addNewGameModal}"></div>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <th>Game name</th>
-                        <th>Top scored user</th>
-                        <th>Top score</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tr th:each="playGame: ${playGameList}">
-                        <td th:text="${playGame.gameName}"></td>
-                        <td th:text="${playGame.topScoreUserName}"></td>
-                        <td th:text="${playGame.topScore}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <form th:action="@{/play-game/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
-                    <button type="submit" class="btn btn-primary" >
-                        Add new game
-                    </button>
-                </form>
+            <div th:if="${game != null}" class="card-top p-2">
+                <h3 th:if="${playGame.isFinished == false}" class="card-title text-center" th:text="${'You started game ' + game.name}"></h3>
+                <h3 th:if="${playGame.isFinished == true}" class="card-title text-center" th:text="${'Score for the game ' + game.name}"></h3>
+                <button th:if="${playGame.isFinished == false}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserScoreModal">
+                    Add user score
+                </button>
+                <div class="modal fade" id="addUserScoreModal" tabindex="-1" aria-labelledby="addUserScoreLabel" aria-hidden="true">
+                    <div th:replace="~{fragments::addUserScoreModal}"></div>
+                </div>
+                <span th:if="${#lists.isEmpty(userGameScores)}">There are now users with scores yet.</span>
+                <div th:unless="${#lists.isEmpty(userGameScores)}" class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <th>Position</th>
+                            <th>User name</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr th:each="userGame, iStat: ${userGameScores}">
+                            <td th:text="${iStat.index + 1}"></td>
+                            <td th:text="${userGame.userId}"></td>
+                            <td th:text="${userGame.score}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <form th:action="@{/play-game/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
+                        <button type="submit" class="btn btn-primary" >
+                            Finish game
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

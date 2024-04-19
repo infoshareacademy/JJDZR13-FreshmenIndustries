@@ -3,8 +3,8 @@ package pl.isa.freshmenindustries.playGame;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.game.GameRepository;
 import pl.isa.freshmenindustries.userGame.UserGame;
 import pl.isa.freshmenindustries.userGame.UserGameRepository;
@@ -82,6 +82,12 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
                         true);})
                 .collect(Collectors.toList());
     }
+    @Override
+    public PlayGame getPlayGameById(UUID playGameId) {
+        List<PlayGame> playGames = getAllPlayGame();
+        return playGames.stream().filter(n -> n.getId().equals(playGameId)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + playGameId));
+    }
 
     private void writeEntitiesToFile(List entities, File file) {
         try {
@@ -90,4 +96,6 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
             log.info(e.getMessage());
         }
     }
+
+
 }

@@ -1,7 +1,5 @@
 package pl.isa.freshmenindustries.userGame;
 
-import pl.isa.freshmenindustries.playGame.PlayGame;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -10,7 +8,7 @@ public interface UserGameRepository {
 
     List<UserGame> getAllUserGame();
 
-    List<UserGame> getUserGameByGameId(UUID playGameId);
+    List<UserGame> getUserGameByPlayGameId(UUID playGameId);
 
     UserGame getTopScoredRecordForGameByGameId(UUID playGameId);
 }
