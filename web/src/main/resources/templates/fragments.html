@@ -19,9 +19,10 @@
            th:href="@{/}">Main page</a>
         <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
            th:href="@{/manage-games}">Manage games</a>
+        <a class="btn me-2" th:classappend="${content == 'playedGamesList'} ? 'btn-success' : 'btn-outline-success'"
+           th:href="@{/played-games}">Competition list</a>
         <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
            th:href="@{/start-new-game}">Start new game</a>
-        <!--        <a class="btn" th:classappend="${content == 'players'} ? 'btn-primary' : 'btn-outline-primary'" th:href="@{/players}">Lista graczy</a>-->
     </div>
 </nav>
 
