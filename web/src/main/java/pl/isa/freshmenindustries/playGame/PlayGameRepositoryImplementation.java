@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.game.GameRepository;
 import pl.isa.freshmenindustries.userGame.UserGame;
 import pl.isa.freshmenindustries.userGame.UserGameRepository;
@@ -58,32 +57,30 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
 
     @Override
     public List<PlayedGamesDTO> getPlayedGameListDto() {
-        try {
-            getAllPlayGame()
-                    .stream()
-                    .map(n -> new PlayedGamesDTO(
-                            gameRepository.getGameById(n.getGameId()).getName(),
-                            userGameRepository.getTopScoredRecordForGameByGameId(n.getId()).getUserId().toString(),
-                            userGameRepository.getTopScoredRecordForGameByGameId(n.getId()).getScore(),
-                            true))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        }
-
         return getAllPlayGame()
                 .stream()
                 .map(n -> {
                     String gameName = gameRepository.getGameById(n.getGameId()).getName();
-                    //TODO add some checkers and error handling for empty UserGame return
                     UserGame userGame = userGameRepository.getTopScoredRecordForGameByGameId(n.getId());
-                    return new PlayedGamesDTO(
-                            gameName,
-                            userGame.getUserId().toString(),
-                            userGame.getScore(),
-                        true);})
-                .collect(Collectors.toList());
+                    if (userGame != null) {
+                        return new PlayedGamesDTO(
+                                gameName,
+                                //TODO replace this by user concat: name + surname
+                                userGame.getUserId().toString(),
+                                userGame.getScore(),
+                                n.isFinished(),
+                                n.getId());
+                    } else {
+                        return new PlayedGamesDTO(
+                                gameName,
+                                "No top scorer",
+                                0,
+                                n.isFinished(),
+                                n.getId());
+                    }
+                }).collect(Collectors.toList());
     }
+
     @Override
     public PlayGame getPlayGameById(UUID playGameId) {
         List<PlayGame> playGames = getAllPlayGame();
@@ -98,6 +95,4 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
             log.info(e.getMessage());
         }
     }
-
-
 }
