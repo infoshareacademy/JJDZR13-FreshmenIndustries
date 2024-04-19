@@ -25,9 +25,8 @@ public class GameController {
     public String startNewGame(Model model,
                                @ModelAttribute("response") Response response,
                                @ModelAttribute("game") Game game) {
-        model.addAttribute("gamesList", gameService.getAllGames().getData())
+        model.addAttribute("gamesList", gameService.getAllActiveGames().getData())
                 .addAttribute("response", response)
-                .addAttribute("game", game)
                 .addAttribute("content", "startNewGame");
         return "main";
     }
@@ -35,7 +34,7 @@ public class GameController {
     public String games(Model model,
                         @ModelAttribute("response") Response response,
                         @ModelAttribute("game") Game game) {
-        model.addAttribute("gamesList", gameService.getAllGames().getData())
+        model.addAttribute("gamesList", gameService.getAllActiveGames().getData())
                 .addAttribute("response", response)
                 .addAttribute("game", game)
                 .addAttribute("content", "manageGames");

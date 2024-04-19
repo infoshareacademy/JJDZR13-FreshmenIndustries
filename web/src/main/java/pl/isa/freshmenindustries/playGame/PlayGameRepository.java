@@ -10,4 +10,6 @@ public interface PlayGameRepository {
     PlayGame createPlayGame(UUID gameID);
 
     List<PlayedGamesDTO> getPlayedGameListDto();
+
+    PlayGame getPlayGameById(UUID playGameId);
 }

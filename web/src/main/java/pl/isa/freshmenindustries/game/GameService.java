@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.isa.freshmenindustries.response.Response;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -16,7 +15,7 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    public Response getAllGames() {
+    public Response getAllActiveGames() {
         log.info("Getting all games list");
         try {
             return new Response(Boolean.TRUE, gameRepository.getAllActiveGames());
