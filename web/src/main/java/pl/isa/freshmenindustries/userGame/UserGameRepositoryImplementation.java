@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import pl.isa.freshmenindustries.game.Game;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,13 +42,17 @@ public class UserGameRepositoryImplementation implements UserGameRepository {
     }
 
     @Override
-    public List<UserGame> getUserGameByGameId(UUID playGameId) {
-        return getAllUserGame().stream().filter(n -> n.getPlayGameId().equals(playGameId)).collect(Collectors.toList());
+    public List<UserGame> getUserGameByPlayGameId(UUID playGameId) {
+        return getAllUserGame().stream()
+                .filter(n -> n.getPlayGameId()
+                .equals(playGameId))
+                .sorted(Comparator.comparingInt(UserGame::getScore).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
     public UserGame getTopScoredRecordForGameByGameId(UUID playGameId) {
-        return   getUserGameByGameId(playGameId)
+        return   getUserGameByPlayGameId(playGameId)
                 .stream()
                 .sorted(Comparator.comparingInt(UserGame::getScore).reversed())
                 .limit(1)
