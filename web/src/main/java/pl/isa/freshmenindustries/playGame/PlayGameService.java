@@ -2,7 +2,6 @@ package pl.isa.freshmenindustries.playGame;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pl.isa.freshmenindustries.game.Game;
 import pl.isa.freshmenindustries.response.Response;
 
 import java.util.UUID;
@@ -14,15 +13,6 @@ public class PlayGameService {
 
     public PlayGameService(PlayGameRepository playGameRepository) {
         this.playGameRepository = playGameRepository;
-    }
-
-    public Response getAllPlayGames() {
-        log.info("Getting all play games list");
-        try {
-            return new Response(Boolean.TRUE, playGameRepository.getAllPlayGame());
-        } catch (Exception e) {
-            return new Response("General error occurred", Boolean.FALSE);
-        }
     }
 
     public PlayGame startGame(UUID gameID) {
