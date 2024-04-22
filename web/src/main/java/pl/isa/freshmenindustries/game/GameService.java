@@ -15,7 +15,7 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    public Response getAllGames() {
+    public Response getAllActiveGames() {
         log.info("Getting all games list");
         try {
             return new Response(Boolean.TRUE, gameRepository.getAllActiveGames());
@@ -54,4 +54,5 @@ public class GameService {
             return new Response(e.getMessage(), Boolean.TRUE);
         }
     }
+
 }

@@ -19,9 +19,10 @@
            th:href="@{/}">Main page</a>
         <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
            th:href="@{/manage-games}">Manage games</a>
+        <a class="btn me-2" th:classappend="${content == 'playedGamesList'} ? 'btn-success' : 'btn-outline-success'"
+           th:href="@{/played-games}">Competition list</a>
         <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
            th:href="@{/start-new-game}">Start new game</a>
-        <!--        <a class="btn" th:classappend="${content == 'players'} ? 'btn-primary' : 'btn-outline-primary'" th:href="@{/players}">Lista graczy</a>-->
     </div>
 </nav>
 
@@ -128,11 +129,43 @@
             Are you sure You want to start new game?
         </div>
         <div class="modal-footer">
-            <form method="post">
-                <input type="hidden" class="form-control" id="newGameId" name="newGame" >
+            <form th:action="@{/play-game/start}" method="post">
+                <input type="hidden" class="form-control" id="newGameId" name="gameId">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Yes, start new game</button>
             </form>
         </div>
     </div>
+</div>
+
+<!--add user with score to play game modal-->
+<div th:fragment="addUserScoreModal" class="modal-dialog">
+    <form th:action="@{/user-game/add}" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-2" id="addUserScoreLabel">New user score</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <input type="hidden" class="form-control" id="play-game" name="playGameId" th:value="${playGame.id}">
+                        <label for="users-drop-down-list" class="col-form-label">Select user</label>
+                        <select class="form-control" id="users-drop-down-list" name="userId">
+                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4801'">Jan Kowalski</option>
+                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4000'">Jurek Nowak</option>
+                        </select>
+                        <label for="user-score" class="col-form-label">Score</label>
+                        <input type="number" class="form-control" id="user-score" name="score" value=0>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

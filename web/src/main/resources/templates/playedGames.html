@@ -1,0 +1,33 @@
+<div th:fragment="content" class="container">
+    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="manage-games" type="button" class="button btn-close">close</a>
+    </div>
+        <div class="card mt-5" style="width: 80%; margin: 0 auto;">
+            <div class="card-top text-center p-2">
+                <h3 class="card-title">Competition played:</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Game name</th>
+                        <th>Top score user</th>
+                        <th>Top score</th>
+                        <th>Is finished</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="game: ${playedGamesWithTopScoreUser}">
+                        <td th:text="${game.gameName}"></td>
+                        <td th:text="${game.topScoreUserName}"></td>
+                        <td th:if="${game.topScore == 0}">-</td>
+                        <td th:if="${game.topScore > 0}" th:text="${game.topScore}"></td>
+                        <td th:text="${game.isCompleted} ? 'Yes': 'No'"></td>
+                        <td><a th:href="@{/play-game/{id}(id=${game.playGameId})}" class="btn btn-secondary btn-light btn-outline-dark" >View</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
