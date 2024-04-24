@@ -1,7 +1,7 @@
 <div th:fragment="content" class="container text-center">
     <div class="card index-card mt-5">
-        <div class="card-body">
-            <h3 class="card-title">Game Application</h3>
+        <div class="card-body" th:each="gameScore: ${playGameTopRank}">
+            <h3 class="card-title" th:text="${gameScore.gameName}"></h3>
         </div>
     </div>
 </div>

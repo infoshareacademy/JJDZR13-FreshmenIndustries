@@ -7,41 +7,44 @@
         <div th:text="${response.message}">...</div>
         <a href="manage-games" type="button" class="button btn-close">close</a>
     </div>
-    <div th:fragment="content" class="container">
-        <div class="card mt-5" style="width: 80%; margin: 0 auto;">
-            <div class="card-top text-center p-2">
-                <h3 class="card-title">Manage game list:</h3>
-            </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewGameModal">
-                Add new game
-            </button>
-            <div class="modal fade" id="addNewGameModal" tabindex="-1" aria-labelledby="addNewGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::addNewGameModal}"></div>
-            </div>
-            <div class="modal fade" id="editGameModal" tabindex="-1" aria-labelledby="editGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::editGameModal}"></div>
-            </div>
-            <div class="modal fade" id="deleteGameModal" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalLabel" aria-hidden="true">
-                <div th:replace="~{fragments::deleteGameModal}"></div>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tr th:each="game: ${gamesList}">
-                        <td th:text="${game.name}"></td>
-                        <td th:text="${game.description}"></td>
-                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-light btn-outline-dark editGameBtn" >Edit</a></td>
-                        <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}" class="btn btn-secondary btn-dark btn-outline-light deleteGameBtn">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="card mt-5" style="width: 100%; margin: 0 auto;">
+        <div class="card-top text-center p-2">
+            <h3 class="card-title">Manage game list:</h3>
+        </div>
+        <button type="button" class="btn btn-info btn-lg " style="margin: 20px" data-toggle="modal" data-target="#addNewGameModal">
+            Add new game
+        </button>
+        <div class="modal fade" id="addNewGameModal" tabindex="-1" aria-labelledby="addNewGameModalLabel"
+             aria-hidden="true">
+            <div th:replace="~{fragments::addNewGameModal}"></div>
+        </div>
+        <div class="modal fade" id="editGameModal" tabindex="-1" aria-labelledby="editGameModalLabel"
+             aria-hidden="true">
+            <div th:replace="~{fragments::editGameModal}"></div>
+        </div>
+        <div class="modal fade" id="deleteGameModal" tabindex="-1" role="dialog" aria-labelledby="deleteGameModalLabel"
+             aria-hidden="true">
+            <div th:replace="~{fragments::deleteGameModal}"></div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="game: ${gamesList}">
+                    <td th:text="${game.name}"></td>
+                    <td th:text="${game.description}"></td>
+                    <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}"
+                           class="btn btn-secondary btn-light btn-outline-dark editGameBtn">Edit</a></td>
+                    <td><a th:href="@{/manage-games/get/{id}(id=${game.id})}"
+                           class="btn btn-secondary btn-dark btn-outline-light deleteGameBtn">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

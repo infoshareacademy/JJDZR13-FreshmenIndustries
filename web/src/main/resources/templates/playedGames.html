@@ -3,9 +3,9 @@
         <div th:text="${response.message}">...</div>
         <a href="manage-games" type="button" class="button btn-close">close</a>
     </div>
-        <div class="card mt-5" style="width: 80%; margin: 0 auto;">
+        <div class="card mt-5" style="width: 100%; margin: 0 auto;">
             <div class="card-top text-center p-2">
-                <h3 class="card-title">Competition played:</h3>
+                <h3 class="card-title">Competition list:</h3>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -23,7 +23,7 @@
                         <td th:if="${game.topScore == 0}">-</td>
                         <td th:if="${game.topScore > 0}" th:text="${game.topScore}"></td>
                         <td th:text="${game.isCompleted} ? 'Yes': 'No'"></td>
-                        <td><a th:href="@{/play-game/{id}(id=${game.playGameId})}" class="btn btn-secondary btn-light btn-outline-dark" >View</a></td>
+                        <td><a th:href="@{/play-game/{id}(id=${game.playGameId})}" class="btn btn-secondary btn-light btn-outline-dark" th:text="${game.isCompleted} ? 'View':'Play'"></a></td>
                     </tr>
                     </tbody>
                 </table>

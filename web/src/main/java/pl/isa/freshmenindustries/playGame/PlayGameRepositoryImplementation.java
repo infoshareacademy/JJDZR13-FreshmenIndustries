@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import java.util.Map;
+
 @Repository
 @Slf4j
 public class PlayGameRepositoryImplementation implements PlayGameRepository {
@@ -73,12 +75,61 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
                     } else {
                         return new PlayedGamesDTO(
                                 gameName,
-                                "No top scorer",
+                                "-",
                                 0,
                                 n.isFinished(),
                                 n.getId());
                     }
                 }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PlayedGameRankDTO> getPlayGameTopUserRankListDTO() {
+
+        try {
+            getAllPlayGame()
+                    .stream()
+                    .filter(PlayGame::isFinished)
+                    .map(n -> {
+                        List<UserGame> userGames = userGameRepository.getUserGameByPlayGameId(n.getId());
+                        Map<String, Integer> userScores = userGames.stream()
+//                            .map(m -> {return Map<String userName, Integer score> (m.getUserId().toString(), m.getScore())})
+                                .collect(Collectors.toMap(
+                                        //TODO replace this by user object, concat: name + surname
+                                        m -> m.getUserId().toString(),
+                                        UserGame::getScore
+                                ));
+                        return new PlayedGameRankDTO(
+//                            gameRepository.getGameById(n.getId()).getName(),
+                                "",
+                                n.getId(),
+                                userScores
+                        );
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+
+        return getAllPlayGame()
+                .stream()
+                .filter(PlayGame::isFinished)
+                .map(n -> {
+                    List<UserGame> userGames = userGameRepository.getUserGameByPlayGameId(n.getId());
+                    Map<String, Integer> userScores = userGames.stream()
+//                            .map(m -> {return Map<String userName, Integer score> (m.getUserId().toString(), m.getScore())})
+                            .collect(Collectors.toMap(
+                                    //TODO replace this by user object, concat: name + surname
+                                    m -> m.getUserId().toString(),
+                                    UserGame::getScore
+                            ));
+                    return new PlayedGameRankDTO(
+                            gameRepository.getGameById(n.getGameId()).getName(),
+                            n.getId(),
+                            userScores
+                    );
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
