@@ -21,7 +21,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping("start-new-game")
+    @GetMapping("/start-new-game")
     public String startNewGame(Model model,
                                @ModelAttribute("response") Response response,
                                @ModelAttribute("game") Game game) {
