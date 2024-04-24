@@ -47,5 +47,26 @@
     "startDate": "2024-04-24",
     "endDate": "",
     "finished": false
+  },
+  {
+    "id": "ad3d2e78-c263-4f50-8d4c-e795b6a89628",
+    "gameId": "fd5fb446-17d3-46b4-b1d5-d66ca9f29231",
+    "startDate": "2024-04-24",
+    "endDate": "",
+    "finished": false
+  },
+  {
+    "id": "ad3d2e78-c263-4f50-8d4c-e795b6a89628",
+    "gameId": "fd5fb446-17d3-46b4-b1d5-d66ca9f29231",
+    "startDate": "2024-04-24",
+    "endDate": "2024-04-24",
+    "finished": true
+  },
+  {
+    "id": "ad3d2e78-c263-4f50-8d4c-e795b6a89628",
+    "gameId": "fd5fb446-17d3-46b4-b1d5-d66ca9f29231",
+    "startDate": "2024-04-24",
+    "endDate": "2024-04-24",
+    "finished": true
   }
 ]

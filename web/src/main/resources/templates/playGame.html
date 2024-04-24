@@ -38,7 +38,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <form th:action="@{/play-game/start/047d4ca7-3374-4490-8429-6474b95b4801}" th:method="post">
+                <form th:action="@{/play-game/end}" th:method="post">
+                    <input type="hidden" id="playGameID" name="id" th:value="${playGame.id}">
                     <button type="submit" class="btn btn-primary">
                         Finish game
                     </button>

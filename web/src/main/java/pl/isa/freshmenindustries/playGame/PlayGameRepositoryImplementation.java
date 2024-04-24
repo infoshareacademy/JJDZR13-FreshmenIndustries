@@ -133,6 +133,17 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
     }
 
     @Override
+    public void endPlayGame(UUID id) {
+        List<PlayGame> playGameList = getAllPlayGame();
+        PlayGame playGame = getPlayGameById(id);
+        playGameList.remove(playGame);
+        playGame.setEndDate(LocalDate.now().toString());
+        playGame.setFinished(true);
+        playGameList.add(playGame);
+        writeEntitiesToFile(playGameList,playGamesFilePath);
+    }
+
+    @Override
     public PlayGame getPlayGameById(UUID playGameId) {
         List<PlayGame> playGames = getAllPlayGame();
         return playGames.stream().filter(n -> n.getId().equals(playGameId)).findFirst()

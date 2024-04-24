@@ -66,4 +66,9 @@ public class PlayGameController {
         PlayGame playGame = playGameService.startGame(gameId);
         return "redirect:/play-game/" + playGame.getId();
     }
+    @PostMapping("/play-game/end")
+    public String endPlayGame(@ModelAttribute("id") UUID id, RedirectAttributes redirectAttributes) {
+        playGameService.endPlayGame(id);
+        return "redirect:/play-game";
+    }
 }
