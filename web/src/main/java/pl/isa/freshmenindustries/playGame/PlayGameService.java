@@ -27,6 +27,7 @@ public class PlayGameService {
             return new Response("General error occurred", Boolean.FALSE);
         }
     }
+
     public Response getPlayedGameTopRankListDto() {
         log.info("Getting all play games list with top score users rank");
         try {
@@ -39,5 +40,11 @@ public class PlayGameService {
     public PlayGame getPlayGameById(UUID id) {
         log.info("Get play game with id : " + id);
         return playGameRepository.getPlayGameById(id);
+    }
+
+    public Response endPlayGame(UUID id) {
+        log.info("Game finished");
+        playGameRepository.endPlayGame(id);
+        return new Response("The game has been finished", Boolean.TRUE);
     }
 }

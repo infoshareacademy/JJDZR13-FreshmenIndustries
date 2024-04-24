@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface UserRepository {
     void createUser (User user);
-    void getUserById(UUID id);
+    User getUserById(UUID id);
     void editUser(User user);
     List<User> getAllUsers();
 }

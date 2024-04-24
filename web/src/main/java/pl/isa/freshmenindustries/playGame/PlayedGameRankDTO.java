@@ -16,4 +16,5 @@ public class PlayedGameRankDTO {
     private String gameName;
     private UUID playGameId;
     private Map<String, Integer> usersScore;
+
 }

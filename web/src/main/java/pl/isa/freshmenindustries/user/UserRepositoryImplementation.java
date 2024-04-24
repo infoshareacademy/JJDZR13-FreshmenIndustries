@@ -31,8 +31,10 @@ public class UserRepositoryImplementation implements UserRepository {
     }
 
     @Override
-    public void getUserById(UUID id) {
-
+    public User getUserById(UUID id) {
+        List<User> users =getAllUsers();
+        return users.stream().filter(n -> n.getId().equals(id)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
     }
 
     @Override

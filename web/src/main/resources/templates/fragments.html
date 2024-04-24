@@ -33,7 +33,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" th:href="@{/manage-games}">Manage games</a>
-                        <a class="dropdown-item" th:href="@{/}">Manage users</a>
+                        <a class="dropdown-item" th:href="@{/manage-users}">Manage users</a>
                     </div>
                 </li>
             </ul>
@@ -169,8 +169,7 @@
                         <input type="hidden" class="form-control" id="play-game" name="playGameId" th:value="${playGame.id}">
                         <label for="users-drop-down-list" class="col-form-label">Select user</label>
                         <select class="form-control" id="users-drop-down-list" name="userId">
-                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4801'">Jan Kowalski</option>
-                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4000'">Jurek Nowak</option>
+                            <option  th:each="user: ${users}" th:value="${user.id}" th:text="${user.name} + ' ' + ${user.surname}"></option>
                         </select>
                         <label for="user-score" class="col-form-label">Score</label>
                         <input type="number" class="form-control" id="user-score" name="score" value=0>
@@ -192,7 +191,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-2" id="exampleModalLabel">New user</h3>
+                    <h3 class="modal-title fs-2" id="newUserTitle">New user</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

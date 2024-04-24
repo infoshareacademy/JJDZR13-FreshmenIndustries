@@ -14,9 +14,9 @@ public class MainController {
     }
 
     @GetMapping("/")
-    String index (Model model) {
+    String index(Model model) {
         model.addAttribute("playGameTopRank", playGameService.getPlayedGameTopRankListDto().getData())
-            .addAttribute("content", "index");
+                .addAttribute("content", "index");
         return "main";
     }
 }

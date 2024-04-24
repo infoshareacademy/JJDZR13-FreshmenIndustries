@@ -15,5 +15,6 @@ public interface PlayGameRepository {
 
     List<PlayedGameRankDTO> getPlayGameTopUserRankListDTO();
 
+    void endPlayGame (UUID id);
 
 }

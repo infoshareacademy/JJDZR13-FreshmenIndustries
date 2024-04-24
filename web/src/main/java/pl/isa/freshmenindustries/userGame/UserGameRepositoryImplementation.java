@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import pl.isa.freshmenindustries.user.User;
+import pl.isa.freshmenindustries.user.UserRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +19,14 @@ import java.util.stream.Collectors;
 @Repository
 @Slf4j
 public class UserGameRepositoryImplementation implements UserGameRepository {
+    public final UserRepository userRepository;
     ObjectMapper objectMapper = new ObjectMapper();
     List<UserGame> allUserGames = new ArrayList<>();
     File userGameFilePath = new File("web/src/main/resources/source/user-game.json");
+
+    public UserGameRepositoryImplementation(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<UserGame> getAllUserGame() {
@@ -45,14 +52,29 @@ public class UserGameRepositoryImplementation implements UserGameRepository {
     public List<UserGame> getUserGameByPlayGameId(UUID playGameId) {
         return getAllUserGame().stream()
                 .filter(n -> n.getPlayGameId()
-                .equals(playGameId))
+                        .equals(playGameId))
                 .sorted(Comparator.comparingInt(UserGame::getScore).reversed())
                 .collect(Collectors.toList());
     }
 
     @Override
+    public List<UserGameDTO> getUserGameDTOByPlayGameId(UUID playGameId) {
+        return getAllUserGame().stream()
+                .filter(n -> n.getPlayGameId().equals(playGameId))
+                .sorted(Comparator.comparingInt(UserGame::getScore).reversed())
+                .map(n -> {
+                    User user = userRepository.getUserById(n.getUserId());
+                    return new UserGameDTO(
+                            user.getName() + " " + user.getSurname(),
+                            n.getScore()
+                    );
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public UserGame getTopScoredRecordForGameByGameId(UUID playGameId) {
-        return   getUserGameByPlayGameId(playGameId)
+        return getUserGameByPlayGameId(playGameId)
                 .stream()
                 .sorted(Comparator.comparingInt(UserGame::getScore).reversed())
                 .limit(1)
