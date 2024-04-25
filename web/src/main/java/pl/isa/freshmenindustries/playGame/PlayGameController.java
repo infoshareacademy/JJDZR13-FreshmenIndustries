@@ -80,4 +80,9 @@ public class PlayGameController {
         redirectAttributes.addFlashAttribute("response", playGameService.endPlayGame(id));
         return "redirect:/played-games";
     }
+    @PostMapping("/play-game/end")
+    public String endPlayGame(@ModelAttribute("id") UUID id, RedirectAttributes redirectAttributes) {
+        playGameService.endPlayGame(id);
+        return "redirect:/play-game";
+    }
 }
