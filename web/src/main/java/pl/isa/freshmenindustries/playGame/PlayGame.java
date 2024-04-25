@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,7 +24,10 @@ public class PlayGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayGame playGame = (PlayGame) o;
-        return isFinished == playGame.isFinished && Objects.equals(id, playGame.id) && Objects.equals(gameId, playGame.gameId) && Objects.equals(startDate, playGame.startDate) && Objects.equals(endDate, playGame.endDate);
+        return isFinished == playGame.isFinished && Objects.equals(id, playGame.id)
+               && Objects.equals(gameId, playGame.gameId)
+               && Objects.equals(startDate, playGame.startDate)
+               && Objects.equals(endDate, playGame.endDate);
     }
 
     @Override
