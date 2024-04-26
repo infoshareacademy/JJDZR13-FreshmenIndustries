@@ -19,6 +19,10 @@ public class UserGameService {
 
     public Response createUserGame(UserGame userGame) {
         log.info("Create user game record");
+        if(userGameRepository.getUserGameByPlayGameId(userGame.getPlayGameId())
+                .stream().anyMatch(n -> n.getUserId().equals(userGame.getUserId()))) {
+            return new Response("User already added to score list", Boolean.FALSE);
+        }
         try {
             userGameRepository.createUserGame(userGame);
             return new Response("User score added successfully", Boolean.TRUE);
@@ -28,5 +32,9 @@ public class UserGameService {
     }
     public List<UserGame> getUserGameByPlayGameId(UUID playGameId) {
         return userGameRepository.getUserGameByPlayGameId(playGameId);
+    }
+
+    public List<UserGameDTO> getUserGameDTOByPlayGameId(UUID playGameId) {
+        return userGameRepository.getUserGameDTOByPlayGameId(playGameId);
     }
 }

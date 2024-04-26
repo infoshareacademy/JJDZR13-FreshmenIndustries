@@ -12,4 +12,9 @@ public interface PlayGameRepository {
     List<PlayedGamesDTO> getPlayedGameListDto();
 
     PlayGame getPlayGameById(UUID playGameId);
+
+    List<PlayedGameRankDTO> getPlayGameTopUserRankListDTO();
+
+    void endPlayGame (UUID id);
+
 }

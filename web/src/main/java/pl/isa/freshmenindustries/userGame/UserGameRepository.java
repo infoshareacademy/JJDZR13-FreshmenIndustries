@@ -9,6 +9,7 @@ public interface UserGameRepository {
     List<UserGame> getAllUserGame();
 
     List<UserGame> getUserGameByPlayGameId(UUID playGameId);
+    List<UserGameDTO> getUserGameDTOByPlayGameId(UUID playGameId);
 
     UserGame getTopScoredRecordForGameByGameId(UUID playGameId);
 }

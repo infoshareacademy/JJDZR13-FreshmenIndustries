@@ -1,15 +1,24 @@
+body {
+    background-color: aqua;
+}
+
 main {
     min-height: calc(100% - 60px);
-    overflow:auto;
-    padding-bottom:100px; /* this needs to be bigger than footer height*/
+    overflow: auto;
+    padding-bottom: 100px; /* this needs to be bigger than footer height*/
+    background-image: url("https://www.thesprucecrafts.com/thmb/ZEh96cIY7PIRf8T_AirD2BydtJQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/clear-dice-with-shallow-depth-of-field-die-displaying-number-four-in-focus-558309704-57c38f615f9b5855e5d266c3.jpg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .tfixed {
     table-layout: fixed;
 }
 
+ó
 .index-card {
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
 }
 

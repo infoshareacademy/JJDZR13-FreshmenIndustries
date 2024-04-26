@@ -13,20 +13,35 @@
     <script type="text/javascript" th:src="@{/static/js/main.js}"></script>
 </head>
 
-<nav th:fragment="navbar" class="navbar navbar-light bg-light">
-    <div class="container-fluid justify-content-center">
-        <a class="btn me-2" th:classappend="${content == 'index'} ? 'btn-secondary' : 'btn-outline-secondary'"
-           th:href="@{/}">Main page</a>
-        <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
-           th:href="@{/manage-games}">Manage games</a>
-        <a class="btn me-2" th:classappend="${content == 'playedGamesList'} ? 'btn-success' : 'btn-outline-success'"
-           th:href="@{/played-games}">Competition list</a>
-        <a class="btn me-2" th:classappend="${content == 'manageGamesList'} ? 'btn-success' : 'btn-outline-success'"
-           th:href="@{/start-new-game}">Start new game</a>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-left">
+        <a class="navbar-brand" href="/">FreshmenIndustries</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:classappend="${content == 'index'} ? 'active'">
+                    <a class="nav-link" th:href="@{/}">Home </a>
+                </li>
+                <li class="nav-item" th:classappend="${content == 'playedGames'} ? 'active'">
+                    <a class="nav-link" th:href="@{/played-games}">Competitions </a>
+                </li>
+                <li class="nav-item" th:classappend="${content == 'startNewGame'} ? 'active'">
+                    <a class="nav-link" th:href="@{/start-new-game}">New competition </a>
+                </li>
+                <li class="nav-item dropdown" th:classappend="${content == 'manageGames' || content == 'manageUsers'} ? 'active'">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Configuration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/manage-games}">Manage games</a>
+                        <a class="dropdown-item" th:href="@{/manage-users}">Manage users</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
-<footer th:fragment="footer" class="footer bg-light text-center mt-auto">
+<footer th:fragment="footer" class="footer bg-light text-center fixed-bottom" style="opacity: 0.5">
     <div class="container text-muted">
         <small>Created by FreshmenIndustries 2024</small>
     </div>
@@ -154,11 +169,41 @@
                         <input type="hidden" class="form-control" id="play-game" name="playGameId" th:value="${playGame.id}">
                         <label for="users-drop-down-list" class="col-form-label">Select user</label>
                         <select class="form-control" id="users-drop-down-list" name="userId">
-                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4801'">Jan Kowalski</option>
-                            <option th:value="'047d4ca7-3374-4490-8429-6474b95b4000'">Jurek Nowak</option>
+                            <option  th:each="user: ${users}" th:value="${user.id}" th:text="${user.name} + ' ' + ${user.surname}"></option>
                         </select>
                         <label for="user-score" class="col-form-label">Score</label>
                         <input type="number" class="form-control" id="user-score" name="score" value=0>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--add new user modal-->
+<div th:fragment="addNewUserModal" class="modal-dialog">
+    <form th:action="@{/manage-users/create}" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-2" id="newUserTitle">New user</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="col-form-label">Surname:</label>
+                        <input type="text" class="form-control" id="surname" name="surname">
                     </div>
                 </div>
                 <div class="modal-footer">

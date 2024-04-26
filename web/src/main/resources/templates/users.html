@@ -1,0 +1,30 @@
+<div th:fragment="content" class="container">
+    <div class="card mt-5" style="width: 100%; margin: 0 auto;">
+        <div class="card-top text-center p-2">
+            <h3 class="card-title">Manage users list:</h3>
+        </div>
+        <button type="button" class="btn btn-info btn-lg " style="margin: 20px" data-toggle="modal"
+                data-target="#addNewUserModal">
+            Add new user
+        </button>
+        <div class="modal fade" id="addNewUserModal" tabindex="-1" aria-labelledby="addNewUserModalLabel"
+             aria-hidden="true">
+            <div th:replace="~{fragments::addNewUserModal}"></div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                </tr>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.surname}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
