@@ -64,7 +64,7 @@ public class PlayGameController {
     }
 
     @PostMapping("/play-game/start")
-    public String startPlayGame(@ModelAttribute("gameId") UUID gameId, RedirectAttributes redirectAttributes) {
+    public String startPlayGame(@ModelAttribute("gameId") Long gameId, RedirectAttributes redirectAttributes) {
         try {
             PlayGame playGame = playGameService.startGame(gameId);
             redirectAttributes.addFlashAttribute("response", new Response("Game started successfully", Boolean.TRUE));

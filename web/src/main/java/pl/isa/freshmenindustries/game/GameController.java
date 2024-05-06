@@ -43,7 +43,7 @@ public class GameController {
     }
 
     @GetMapping("/manage-games/get/{id}")
-    public ResponseEntity<Game> getGameById(@PathVariable UUID id) {
+    public ResponseEntity<Game> getGameById(@PathVariable Long id) {
         return new ResponseEntity<>(gameService.getGameById(id), HttpStatus.OK);
     }
 

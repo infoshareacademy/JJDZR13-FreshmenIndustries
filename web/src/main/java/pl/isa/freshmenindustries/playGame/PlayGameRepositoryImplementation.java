@@ -37,7 +37,7 @@ public class PlayGameRepositoryImplementation implements PlayGameRepository {
 
 
     @Override
-    public PlayGame createPlayGame(UUID gameID) {
+    public PlayGame createPlayGame(Long gameID) {
         List<PlayGame> playGameList = getAllPlayGame();
         PlayGame playGame = new PlayGame(UUID.randomUUID(), gameID, LocalDate.now().toString(), "", false);
         playGameList.add(playGame);

@@ -15,7 +15,7 @@ public class PlayGameService {
         this.playGameRepository = playGameRepository;
     }
 
-    public PlayGame startGame(UUID gameID) {
+    public PlayGame startGame(Long gameID) {
         return playGameRepository.createPlayGame(gameID);
     }
 

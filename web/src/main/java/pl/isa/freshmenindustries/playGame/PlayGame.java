@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PlayGame {
     private UUID id;
-    private UUID gameId;
+    private Long gameId;
     private String startDate;
     private String endDate;
     private boolean isFinished;
