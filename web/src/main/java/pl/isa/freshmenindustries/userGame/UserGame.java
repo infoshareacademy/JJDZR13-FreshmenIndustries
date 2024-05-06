@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserGame {
     private UUID playGameId;
-    private UUID userId;
+    private Long userId;
     private int score;
 
 }
