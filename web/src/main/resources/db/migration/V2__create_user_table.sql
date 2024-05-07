@@ -1,0 +1,6 @@
+CREATE TABLE users(
+      id BIGINT NOT NULL AUTO_INCREMENT,
+      PRIMARY KEY (id),
+      name VARCHAR(255) NOT NULL,
+      surname VARCHAR(255) NOT NULL
+)

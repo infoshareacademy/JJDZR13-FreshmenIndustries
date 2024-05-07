@@ -1,12 +1,13 @@
 package pl.isa.freshmenindustries.user;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository {
-    void createUser (User user);
-    User getUserById(UUID id);
-    void editUser(User user);
-    List<User> getAllUsers();
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    User save(User user);
+
+    User getUserById(Long id);
+
+    List<User> findAll();
 }

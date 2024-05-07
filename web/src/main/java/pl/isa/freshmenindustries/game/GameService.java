@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.isa.freshmenindustries.response.Response;
 
-import java.util.UUID;
-
 @Service
 @Slf4j
 public class GameService {
@@ -29,29 +27,30 @@ public class GameService {
             return new Response("Game with provided name already exists", Boolean.FALSE);
         }
         log.info("Create game with name : " + game.getName());
-        gameRepository.createGame(game);
+        gameRepository.save(game);
         return new Response("Game created successfully", Boolean.TRUE);
     }
 
     public Response updateGame(Game game) {
         log.info("Update game with id : " + game.getId());
-        gameRepository.deleteGame(game.getId());
-        gameRepository.updateGame(game);
+        gameRepository.save(game);
         return new Response("Game updated successfully", Boolean.TRUE);
     }
 
-    public Game getGameById(UUID id) {
+    public Game getGameById(Long id) {
         log.info("Get game with id : " + id);
         return gameRepository.getGameById(id);
     }
 
-    public Response deleteGame(UUID id) {
+    public Response deleteGame(Long id) {
         log.info("Delete game with id : " + id);
         try {
-            gameRepository.deleteGame(id);
+            Game game = gameRepository.getGameById(id);
+            game.setIsDeleted(true);
+            gameRepository.save(game);
             return new Response("Game deleted", Boolean.TRUE);
         } catch (Exception e) {
-            return new Response(e.getMessage(), Boolean.TRUE);
+            return new Response(e.getMessage(), Boolean.FALSE);
         }
     }
 

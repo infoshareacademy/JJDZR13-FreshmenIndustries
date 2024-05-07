@@ -1,21 +1,20 @@
 package pl.isa.freshmenindustries.game;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
-import java.util.UUID;
 
 
-public interface GameRepository {
+public interface GameRepository extends JpaRepository<Game, Long> {
+    @Query(value = "SELECT * FROM games WHERE is_deleted = 0", nativeQuery = true)
     List<Game> getAllActiveGames();
 
-    List<Game> getAllGames();
+    List<Game> findAll();
 
-    void createGame(Game game);
+    Game save(Game game);
 
-    void updateGame(Game game);
-
-    Game getGameById(UUID id);
-
-    void deleteGame(UUID id);
+    Game getGameById(Long id);
 
     List<Game> getGamesByName(String name);
 }
