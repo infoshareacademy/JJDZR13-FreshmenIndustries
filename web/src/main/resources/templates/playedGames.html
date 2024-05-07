@@ -19,9 +19,10 @@
                     </tr>
                     <tr th:each="game: ${playedGamesWithTopScoreUser}">
                         <td th:text="${game.gameName}"></td>
-                        <td th:text="${game.topScoreUserName}"></td>
-                        <td th:if="${game.topScore == 0}">-</td>
-                        <td th:if="${game.topScore > 0}" th:text="${game.topScore}"></td>
+                        <td th:if="${game.topScoreUserName == null}">-</td>
+                        <td th:if="${game.topScoreUserName != null}" th:text="${game.topScoreUserName}"></td>
+                        <td th:if="${game.topScore == null}">-</td>
+                        <td th:if="${game.topScore != null}" th:text="${game.topScore}"></td>
                         <td th:text="${game.isCompleted} ? 'Yes': 'No'"></td>
                         <td><a th:href="@{/play-game/{id}(id=${game.playGameId})}" class="btn btn-secondary btn-light btn-outline-dark" th:text="${game.isCompleted} ? 'View':'Play'"></a></td>
                     </tr>

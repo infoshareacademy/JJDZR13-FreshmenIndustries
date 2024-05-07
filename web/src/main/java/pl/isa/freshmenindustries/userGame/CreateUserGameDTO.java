@@ -2,14 +2,13 @@ package pl.isa.freshmenindustries.userGame;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class UserGameDTO {
-    private String userName;
+public class CreateUserGameDTO {
+    private Long playGameId;
+    private Long userId;
     private int score;
 }

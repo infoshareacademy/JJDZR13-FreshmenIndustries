@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.isa.freshmenindustries.userGame.UserGameProjection;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PlayedGameRankDTO {
     private String gameName;
-    private UUID playGameId;
-    private Map<String, Integer> usersScore;
+    private Long playGameId;
+    private List<UserGameProjection> usersScore;
 
 }

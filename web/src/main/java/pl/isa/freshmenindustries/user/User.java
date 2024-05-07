@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.isa.freshmenindustries.userGame.UserGame;
 
-import java.util.UUID;
+import java.util.Set;
 
 @Entity(name = "users")
 @Getter
@@ -21,4 +22,6 @@ public class User {
     private String name;
     @Column(name = "surname", nullable = false)
     private String surname;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserGame> userGameSet;
 }

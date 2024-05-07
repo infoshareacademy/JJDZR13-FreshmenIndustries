@@ -11,11 +11,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.isa.freshmenindustries.game.GameService;
 import pl.isa.freshmenindustries.response.Response;
 import pl.isa.freshmenindustries.user.UserService;
-import pl.isa.freshmenindustries.userGame.UserGameDTO;
+import pl.isa.freshmenindustries.userGame.UserGameProjection;
 import pl.isa.freshmenindustries.userGame.UserGameService;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller()
 @Slf4j
@@ -44,12 +43,11 @@ public class PlayGameController {
     @GetMapping("/play-game/{playGameId}")
     public String playGames(Model model,
                             @ModelAttribute("response") Response response,
-                            @PathVariable UUID playGameId) {
+                            @PathVariable Long playGameId) {
         try {
             PlayGame playGame = playGameService.getPlayGameById(playGameId);
-            //TODO replace this by UserGameDTO to get user name with score
-            List<UserGameDTO> userGames = userGameService.getUserGameDTOByPlayGameId(playGameId);
-            model.addAttribute("game", gameService.getGameById(playGame.getGameId()))
+            List<UserGameProjection> userGames = userGameService.getUserGameDTOByPlayGameId(playGameId);
+            model.addAttribute("game", gameService.getGameById(playGame.getGame().getId()))
                     .addAttribute("users", userService.getAllUsers().getData())
                     .addAttribute("userGameScores", userGames)
                     .addAttribute("playGame", playGame)
@@ -76,7 +74,7 @@ public class PlayGameController {
     }
 
     @PostMapping("/play-game/end")
-    public String endPlayGame(@ModelAttribute("id") UUID id, RedirectAttributes redirectAttributes) {
+    public String endPlayGame(@ModelAttribute("id") Long id, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("response", playGameService.endPlayGame(id));
         return "redirect:/played-games";
     }

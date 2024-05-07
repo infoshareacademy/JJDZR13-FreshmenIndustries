@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.isa.freshmenindustries.response.Response;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -19,22 +19,22 @@ public class UserGameService {
 
     public Response createUserGame(UserGame userGame) {
         log.info("Create user game record");
-        if(userGameRepository.getUserGameByPlayGameId(userGame.getPlayGameId())
-                .stream().anyMatch(n -> n.getUserId().equals(userGame.getUserId()))) {
+        if (!Objects.isNull(userGameRepository.findFirstByPlayGameIdAndUserId(userGame.getPlayGame().getId(), userGame.getUser().getId()))) {
             return new Response("User already added to score list", Boolean.FALSE);
         }
         try {
-            userGameRepository.createUserGame(userGame);
+            userGameRepository.save(userGame);
             return new Response("User score added successfully", Boolean.TRUE);
         } catch (Exception e) {
             return new Response("General error occurred", Boolean.FALSE);
         }
     }
-    public List<UserGame> getUserGameByPlayGameId(UUID playGameId) {
+
+    public List<UserGame> getUserGameByPlayGameId(Long playGameId) {
         return userGameRepository.getUserGameByPlayGameId(playGameId);
     }
 
-    public List<UserGameDTO> getUserGameDTOByPlayGameId(UUID playGameId) {
+    public List<UserGameProjection> getUserGameDTOByPlayGameId(Long playGameId) {
         return userGameRepository.getUserGameDTOByPlayGameId(playGameId);
     }
 }
