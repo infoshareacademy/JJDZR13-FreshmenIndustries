@@ -1,0 +1,14 @@
+<div th:fragment="content" class="container">
+    Login page
+    <form th:action="@{/login}" method="post">
+        <label>
+            <input name="username" type="text" placeholder="User login">
+        </label>
+        <label>
+            <input name="password" type="password" placeholder="Password">
+        </label>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+
