@@ -27,9 +27,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .userDetailsService(userDetailsService)
-                .authorizeHttpRequests(request -> request.requestMatchers("/register", "/static/**", "/").permitAll()
+                .authorizeHttpRequests(request -> request.requestMatchers("/register", "/static/**", "/", "/img/**").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll())
+                .formLogin(form -> form.loginPage("/login").permitAll().failureForwardUrl("/login?error").permitAll())
                 .logout(LogoutConfigurer::permitAll);
         return httpSecurity.build();
     }

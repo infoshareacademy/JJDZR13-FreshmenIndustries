@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         pl.isa.freshmenindustries.user.User userByEmail = userRepository.getUserByEmail(username);
         if (userByEmail == null) {
-            return null;
+            return (UserDetails) new UsernameNotFoundException("User with email " + username + " not found");
         }
         return User.builder()
                 .username(userByEmail.getEmail())
