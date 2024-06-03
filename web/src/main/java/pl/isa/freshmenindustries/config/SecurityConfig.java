@@ -29,15 +29,11 @@ public class SecurityConfig {
         this.roleRepository = roleRepository;
     }
 
-//    public SecurityConfig(UserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-//                .userDetailsService(userDetailsService)
-                .authorizeHttpRequests(request -> request.requestMatchers("/register", "/static/**", "/", "/img/**").permitAll()
+//              .userDetailsService(userDetailsService)
+                .authorizeHttpRequests(request -> request.requestMatchers("/register", "/error/**", "/static/**", "/", "/img/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").permitAll())
                 .logout(LogoutConfigurer::permitAll);

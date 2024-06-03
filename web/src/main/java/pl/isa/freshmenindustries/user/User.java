@@ -29,5 +29,5 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<UserGame> userGameSet;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Role> role;
+    private Set<Role> roles;
 }

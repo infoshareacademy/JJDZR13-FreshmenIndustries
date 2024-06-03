@@ -30,10 +30,13 @@ public class UserService {
             return new Response("General error occurred", Boolean.FALSE);
         }
     }
+    public Boolean isUserByEmailExist(String email) {
+        log.info("Get user by email: " + email);
+        return userRepository.getUserByEmail(email) != null;
+    }
 
     @Transactional
     public Response createUser(User user) {
-        //TODO add user email duplication validator
         User newUser = userRepository.save(user);
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(newUser, USER.name()));

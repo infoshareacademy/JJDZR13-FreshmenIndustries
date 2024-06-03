@@ -25,7 +25,8 @@
                 <li class="nav-item" th:classappend="${content == 'index'} ? 'active'">
                     <a class="nav-link" th:href="@{/}">Home </a>
                 </li>
-                <li class="nav-item" th:classappend="${content == 'playedGames'} ? 'active'">
+                <li th:if="${#lists.contains(usersAttributes.roles, 'USER') || #lists.contains(usersAttributes.roles, 'GAME_MASTER')}"
+                    class="nav-item" th:classappend="${content == 'playedGames'} ? 'active'">
                     <a class="nav-link" th:href="@{/played-games}">Competitions </a>
                 </li>
                 <li class="nav-item" th:classappend="${content == 'startNewGame'} ? 'active'">
@@ -43,10 +44,13 @@
                     </div>
                 </li>
             </ul>
-            <span th:unless="${ #authentication.getName() == 'anonymousUser'}"
-                  th:text="${#authentication.getName()}"></span>
-            <form th:action="@{/logout}" method="post">
+            <span th:if="${usersAttributes.isLoggedIn == true}"
+                  th:text="${usersAttributes.userName}"></span>
+            <form th:if="${usersAttributes.isLoggedIn == true}" th:action="@{/logout}" method="post">
                 <input type="submit" value="Logout">
+            </form>
+            <form th:if="${usersAttributes.isLoggedIn == false}">
+                <a href="/login"><input type="button" value="Login"></a>
             </form>
         </div>
     </div>
