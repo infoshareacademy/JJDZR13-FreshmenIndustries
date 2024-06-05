@@ -18,8 +18,8 @@ public class UserController {
 
     @GetMapping("/manage-users")
     public String getAllUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers().getData()).addAttribute("content", "users");
-
+        model.addAttribute("users", userService.getAllUsers().getData())
+            .addAttribute("content", "users");
         return "main";
     }
 
