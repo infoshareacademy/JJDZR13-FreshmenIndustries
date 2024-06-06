@@ -32,7 +32,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-//              .userDetailsService(userDetailsService)
+                .userDetailsService(userDetailsService())
                 .authorizeHttpRequests(request -> request.requestMatchers("/register", "/error/**", "/static/**", "/", "/img/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").permitAll())

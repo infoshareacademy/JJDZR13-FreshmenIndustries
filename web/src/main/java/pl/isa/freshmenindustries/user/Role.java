@@ -24,4 +24,8 @@ public class Role {
         this.user = user;
         this.role = role;
     }
+
+    public enum RolesEnum {
+        ADMIN, GAME_MASTER, USER
+    }
 }

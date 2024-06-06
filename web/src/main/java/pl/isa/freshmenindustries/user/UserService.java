@@ -8,7 +8,7 @@ import pl.isa.freshmenindustries.response.Response;
 import java.util.HashSet;
 import java.util.Set;
 
-import static pl.isa.freshmenindustries.user.RolesEnum.*;
+import static pl.isa.freshmenindustries.user.Role.RolesEnum.*;
 
 @Slf4j
 @Service
