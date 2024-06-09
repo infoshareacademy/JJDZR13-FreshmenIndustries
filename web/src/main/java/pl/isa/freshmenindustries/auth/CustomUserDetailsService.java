@@ -25,11 +25,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userByEmail == null) {
             throw new UsernameNotFoundException("User with email " + username + " not found");
         }
-            return User.builder()
-                    .username(userByEmail.getEmail())
-                    .password(userByEmail.getPassword())
-                    .roles(roleRepository.findAllByUser(userByEmail).stream().map(Role::getRole).toArray(String[]::new))
-                    .disabled(!userByEmail.isEnabled())
-                    .build();
+        return User.builder()
+                .username(userByEmail.getEmail())
+                .password(userByEmail.getPassword())
+                .roles(roleRepository.findAllByUser(userByEmail).stream().map(Role::getRole).toArray(String[]::new))
+                .disabled(!userByEmail.isEnabled())
+                .build();
     }
 }
