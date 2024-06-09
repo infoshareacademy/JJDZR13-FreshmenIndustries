@@ -43,4 +43,11 @@ public class UserService {
         roleRepository.saveAll(roles);
         return new Response("User created", Boolean.TRUE);
     }
+
+    public void activateUser(String email) {
+        User user = userRepository.getUserByEmail(email);
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
 }

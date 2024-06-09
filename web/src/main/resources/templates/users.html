@@ -21,6 +21,14 @@
                 <tr th:each="user: ${users}">
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.surname}"></td>
+                    <td th:text="${user.email}"></td>
+                    <form th:action="@{/manage-users/activate}" th:method="post">
+                        <input type="hidden" id="user_email" name="email" th:value="${user.email}">
+                        <button type="submit" class="btn btn-dark btn-lg">
+<!--                                th:unless="${#lists.isEmpty(userGameScores)}">-->
+                            Activate user
+                        </button>
+                    </form>
                 </tr>
                 </tbody>
             </table>

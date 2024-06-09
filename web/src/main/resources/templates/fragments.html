@@ -32,7 +32,7 @@
                 <li class="nav-item" th:classappend="${content == 'startNewGame'} ? 'active'">
                     <a class="nav-link" th:href="@{/start-new-game}">New competition </a>
                 </li>
-                <li class="nav-item dropdown"
+                <li th:if="${#lists.contains(usersAttributes.roles, 'ADMIN')}" class="nav-item dropdown"
                     th:classappend="${content == 'manageGames' || content == 'manageUsers'} ? 'active'">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
