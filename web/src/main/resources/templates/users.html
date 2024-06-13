@@ -1,4 +1,12 @@
 <div th:fragment="content" class="container">
+    <div th:if="${response.message != null && !response.isSuccess}" class="alert alert-danger" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="manage-users" type="button" class="button btn-close">close</a>
+    </div>
+    <div th:if="${response.message != null && response.isSuccess}" class="alert alert-success" role="alert">
+        <div th:text="${response.message}">...</div>
+        <a href="manage-users" type="button" class="button btn-close">close</a>
+    </div>
     <div class="card mt-5" style="width: 100%; margin: 0 auto;">
         <div class="card-top text-center p-2">
             <h3 class="card-title">Manage users list:</h3>
@@ -11,25 +19,36 @@
              aria-hidden="true">
             <div th:replace="~{fragments::addNewUserModal}"></div>
         </div>
+        <div class="modal fade" id="assignUserRolesModal" tabindex="-1" aria-labelledby="assignUserRolesModalLabel"
+             aria-hidden="true">
+            <div th:replace="~{fragments::assignUserRolesModal}"></div>
+        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <tbody>
                 <tr>
                     <th>Name</th>
                     <th>Surname</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Manage roles</th>
+                    <th>Manage status</th>
                 </tr>
-                <tr th:each="user: ${users}">
-                    <td th:text="${user.name}"></td>
-                    <td th:text="${user.surname}"></td>
-                    <td th:text="${user.email}"></td>
-                    <form th:action="@{/manage-users/activate}" th:method="post">
-                        <input type="hidden" id="user_email" name="email" th:value="${user.email}">
-                        <button type="submit" class="btn btn-dark btn-lg">
-<!--                                th:unless="${#lists.isEmpty(userGameScores)}">-->
-                            Activate user
-                        </button>
-                    </form>
-                </tr>
+                <form th:each="user: ${users}" th:action="@{/manage-users/activate}" th:method="post">
+                    <input type="hidden" id="user_email" name="email" th:value="${user.email}">
+                    <tr >
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.surname}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td>
+                            <span th:each="role : ${user.roles}" th:text="${role.role} + ${roleStat.last ? '' : ', '}"></span>
+                        </td>
+                        <td><a th:href="@{/manage-users/get-user-rolese/{id}(id=${user.id})}"
+                               class="btn btn-secondary btn-light btn-outline-dark assignUserRolesBtn">Edit roles</a>
+                        </td>
+                        <td><button type="submit" class="btn btn-dark btn-sl ">Activate user</button></td>
+                    </tr>
+                </form>
                 </tbody>
             </table>
         </div>
