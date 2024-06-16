@@ -11,6 +11,7 @@ import java.util.Set;
 @Setter
 @Builder
 public class UserAuthenticationAttributesDTO {
+    private Long userId;
     private String userName;
     private String email;
     private boolean isLoggedIn;

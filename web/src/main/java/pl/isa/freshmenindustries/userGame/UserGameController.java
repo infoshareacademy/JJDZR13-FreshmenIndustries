@@ -1,6 +1,7 @@
 package pl.isa.freshmenindustries.userGame;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class UserGameController {
         this.userRepository = userRepository;
     }
 
+    @Secured({"ROLE_USER", "ROLE_GAME_MASTER"})
     @PostMapping("/user-game/add")
     public String createUserGame(@ModelAttribute CreateUserGameDTO createUserGameDTO, RedirectAttributes redirectAttributes) {
         if (!checkInputNumberIfIsNotNull(createUserGameDTO.getScore()) || createUserGameDTO.getScore() < 1) {
