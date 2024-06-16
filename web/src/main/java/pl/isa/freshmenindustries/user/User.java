@@ -28,6 +28,6 @@ public class User {
     private boolean isEnabled;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<UserGame> userGameSet;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Role> roles;
 }

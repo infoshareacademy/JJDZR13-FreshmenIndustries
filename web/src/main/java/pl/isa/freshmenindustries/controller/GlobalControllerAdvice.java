@@ -26,6 +26,7 @@ public class GlobalControllerAdvice {
             return UserAuthenticationAttributesDTO.builder()
                     .userName(user.getName() + ' ' + user.getSurname())
                     .email(authentication.getName())
+                    .userId(user.getId())
                     .roles(roleRepository.findAllByUser(user)
                             .stream().map(Role::getRole).toArray(String[]::new))
                     .isLoggedIn(true)
