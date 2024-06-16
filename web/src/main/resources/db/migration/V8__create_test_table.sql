@@ -1,1 +1,0 @@
-create table test(id bigint not null AUTO_INCREMENT, PRIMARY KEY(id), test_column varchar(40), example_column varchar(50))

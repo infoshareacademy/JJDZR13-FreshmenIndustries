@@ -27,8 +27,8 @@ public class UserController {
     @GetMapping("/manage-users")
     public String getAllUsers(Model model, @ModelAttribute("response") Response response) {
         model.addAttribute("users", userService.getAllUsers().getData())
-                .addAttribute("response", response)
-                .addAttribute("content", "users");
+                .addAttribute("content", "users")
+                .addAttribute("response", response);
         return "main";
     }
 
@@ -41,8 +41,9 @@ public class UserController {
 
     @Secured({"ROLE_ADMIN"})
     @PostMapping("manage-users/activate")
-    public String activateUser(@ModelAttribute("email") String email) {
-        userService.activateUser(email);
+
+    public String activateUser(@ModelAttribute("email") String email, RedirectAttributes redirectAttributes) {
+       redirectAttributes.addFlashAttribute("response", userService.activateUser(email));
         return "redirect:/manage-users";
     }
 

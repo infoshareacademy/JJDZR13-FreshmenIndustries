@@ -47,10 +47,11 @@ public class UserService {
         return new Response("User created", Boolean.TRUE);
     }
 
-    public void activateUser(String email) {
+    public Response activateUser(String email) {
         User user = userRepository.getUserByEmail(email);
         user.setEnabled(true);
         userRepository.save(user);
+        return new Response("User is activated", Boolean.TRUE);
     }
 
     public Response assignUserRole(UserRolesDTO userRolesDTO) {
