@@ -29,7 +29,8 @@
                     class="nav-item" th:classappend="${content == 'playedGames'} ? 'active'">
                     <a class="nav-link" th:href="@{/played-games}">Competitions </a>
                 </li>
-                <li class="nav-item" th:classappend="${content == 'startNewGame'} ? 'active'">
+                <li th:if="${#lists.contains(usersAttributes.roles, 'GAME_MASTER')}"
+                    class="nav-item" th:classappend="${content == 'startNewGame'} ? 'active'">
                     <a class="nav-link" th:href="@{/start-new-game}">New competition </a>
                 </li>
                 <li th:if="${#lists.contains(usersAttributes.roles, 'ADMIN')}" class="nav-item dropdown"
@@ -44,8 +45,8 @@
                     </div>
                 </li>
             </ul>
-            <span th:if="${usersAttributes.isLoggedIn == true}"
-                  th:text="${usersAttributes.userName}"></span>
+            <span class="login-user-label" th:if="${usersAttributes.isLoggedIn == true}"
+                  th:text="${'User: ' + usersAttributes.userName}"></span>
             <form th:if="${usersAttributes.isLoggedIn == true}" th:action="@{/logout}" method="post">
                 <input type="submit" value="Logout">
             </form>
@@ -184,9 +185,12 @@
                         <input type="hidden" class="form-control" id="play-game" name="playGameId"
                                th:value="${playGame.id}">
                         <label for="users-drop-down-list" class="col-form-label">Select user</label>
-                        <select class="form-control" id="users-drop-down-list" name="userId">
+                        <select th:if="${#lists.contains(usersAttributes.roles, 'GAME_MASTER')}" class="form-control" id="users-drop-down-list" name="userId">
                             <option th:each="user: ${users}" th:value="${user.id}"
                                     th:text="${user.name} + ' ' + ${user.surname}"></option>
+                        </select>
+                        <select th:if="${#lists.contains(usersAttributes.roles, 'USER')}" class="form-control" id="user-drop-down-list" name="userId">
+                            <option th:value="${usersAttributes.userId}" th:text="${usersAttributes.userName}"></option>
                         </select>
                         <label for="user-score" class="col-form-label">Score</label>
                         <input type="number" class="form-control" id="user-score" name="score" value=0>
@@ -221,6 +225,14 @@
                     <div class="mb-4">
                         <label for="name" class="col-form-label">Surname:</label>
                         <input type="text" class="form-control" id="surname" name="surname">
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
                 </div>
                 <div class="modal-footer">

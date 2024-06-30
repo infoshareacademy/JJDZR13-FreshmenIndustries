@@ -32,21 +32,30 @@
                     <th>Email</th>
                     <th>Roles</th>
                     <th>Manage roles</th>
-                    <th>Manage status</th>
+                    <th>Status</th>
                 </tr>
                 <form th:each="user: ${users}" th:action="@{/manage-users/activate}" th:method="post">
                     <input type="hidden" id="user_email" name="email" th:value="${user.email}">
-                    <tr >
+                    <tr>
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.surname}"></td>
                         <td th:text="${user.email}"></td>
                         <td>
-                            <span th:each="role : ${user.roles}" th:text="${role.role} + ${roleStat.last ? '' : ', '}"></span>
+                            <span th:each="role : ${user.roles}"
+                                  th:text="${role.role} + ${roleStat.last ? '' : ', '}"></span>
                         </td>
                         <td><a th:href="@{/manage-users/get-user-rolese/{id}(id=${user.id})}"
-                               class="btn btn-secondary btn-light btn-outline-dark assignUserRolesBtn">Edit roles</a>
+                               class="btn btn-sm btn-secondary btn-light btn-outline-dark assignUserRolesBtn">Edit
+                            roles</a>
                         </td>
-                        <td><button type="submit" class="btn btn-dark btn-sl ">Activate user</button></td>
+                        <td>
+                            <button th:if="${!user.isEnabled}" type="submit" class="btn btn-danger btn-sm center">
+                                Activate user
+                            </button>
+                            <button th:unless="${!user.isEnabled}" type="submit" class="btn btn-success btn-sm center">
+                                Deactivate user
+                            </button>
+                        </td>
                     </tr>
                 </form>
                 </tbody>

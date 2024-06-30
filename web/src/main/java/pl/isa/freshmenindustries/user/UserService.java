@@ -33,6 +33,7 @@ public class UserService {
         }
     }
 
+
     public Boolean isUserByEmailExist(String email) {
         log.info("Getting user by email: " + email);
         return userRepository.getUserByEmail(email) != null;
@@ -49,9 +50,9 @@ public class UserService {
 
     public Response activateUser(String email) {
         User user = userRepository.getUserByEmail(email);
-        user.setEnabled(true);
+        user.setEnabled(!user.isEnabled());
         userRepository.save(user);
-        return new Response("User is activated", Boolean.TRUE);
+        return new Response("User status changed", Boolean.TRUE);
     }
 
     public Response assignUserRole(UserRolesDTO userRolesDTO) {
