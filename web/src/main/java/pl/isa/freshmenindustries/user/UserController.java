@@ -21,7 +21,7 @@ import pl.isa.freshmenindustries.response.Response;
 public class UserController {
     private final UserService userService;
     private final SecurityService securityService;
-    public final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public UserController(UserService userService, SecurityService securityService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
@@ -29,6 +29,8 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/manage-users")
     public String getAllUsers(Model model,
                               RedirectAttributes redirectAttributes,
@@ -69,7 +71,7 @@ public class UserController {
     @PostMapping("manage-users/activate")
 
     public String activateUser(@ModelAttribute("email") String email, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("response", userService.activateUser(email));
+       redirectAttributes.addFlashAttribute("response", userService.activateUser(email));
         return "redirect:/manage-users";
     }
 
